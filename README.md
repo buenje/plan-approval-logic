@@ -31,9 +31,7 @@ Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in techni
 
 Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlicher Automat (Finite State Machine)** modelliert. Der Smart Contract erlaubt Zustandsübergänge nur, wenn definierte Vorbedingungen erfüllt sind.
 
-*(Platzhalter für Diagramm - Lade dein Bild in einen Ordner /docs/images hoch)*
-![State Machine Diagramm](docs/images/state_machine_diagram.png)
-
+*(Platzhalter für Diagramm)
 ### Kern-Funktionen
 * **`initializeProcess`**: Setzt unveränderbare Parameter (Behörden-Adresse, Fristdauer).
 * **`submitObjection`**: Nimmt den Hash einer Einwendung entgegen, prüft Frist und Duplikate.
