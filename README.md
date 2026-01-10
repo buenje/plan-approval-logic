@@ -4,7 +4,7 @@
 ![Solidity](https://img.shields.io/badge/solidity-%5E0.8.0-lightgrey)
 ![Status](https://img.shields.io/badge/status-Academic_PoC-orange)
 
-> **Begleit-Repository zum Fachartikel:** *"Smart Contracts im Planfeststellungsverfahren: Ansätze für eine rechtssichere und effiziente Verfahrensstruktur"* (Titel hier ggf. anpassen)
+> **Begleit-Repository zum Fachartikel:** *"Smart Contracts im Planfeststellungsverfahren: Ansätze für eine rechtssichere und effiziente Verfahrensstruktur"
 
 ## 📄 Über dieses Projekt
 
