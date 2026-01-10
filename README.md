@@ -30,9 +30,6 @@ Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in techni
 ## 🛠 Technische Architektur (State Machine)
 
 Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlicher Automat (Finite State Machine)** modelliert. Der Smart Contract erlaubt Zustandsübergänge nur, wenn definierte Vorbedingungen erfüllt sind.
-
-### Prozess-Logik (State Machine)
-
 ### Prozess-Logik (State Machine)
 
 ```mermaid
