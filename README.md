@@ -33,6 +33,8 @@ Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlic
 
 ### Prozess-Logik (State Machine)
 
+### Prozess-Logik (State Machine)
+
 ```mermaid
 stateDiagram-v2
     [*] --> Initialisierung
@@ -53,10 +55,6 @@ stateDiagram-v2
 
     Prüfung --> Beschluss: Finalisierung durch Behörde
     Beschluss --> [*]
-### Kern-Funktionen
-* **`initializeProcess`**: Setzt unveränderbare Parameter (Behörden-Adresse, Fristdauer).
-* **`submitObjection`**: Nimmt den Hash einer Einwendung entgegen, prüft Frist und Duplikate.
-* **`closeProceedings`**: Finalisiert den Status nach Fristablauf.
 
 ---
 
