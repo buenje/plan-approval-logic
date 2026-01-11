@@ -56,6 +56,7 @@ stateDiagram-v2
   Pruefung --> Beschluss: Finalisierung durch Behörde
   Beschluss --> [*]: Abschluss
 
+
 ## 🚀 Quick Start (Keine Installation nötig)
 
 Um den Smart Contract und die Logik ohne lokale Entwicklungsumgebung zu testen, kann der Code direkt in der Web-IDE **Remix** ausgeführt werden.
