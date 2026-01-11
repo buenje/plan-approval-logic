@@ -57,7 +57,7 @@ stateDiagram-v2
 
   Pruefung --> Beschluss: Finalisierung durch Behörde
   Beschluss --> [*]: Abschluss
-
+```mermaid
 
 
 ## 🚀 Quick Start (Keine Installation nötig)
