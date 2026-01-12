@@ -31,31 +31,38 @@ Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in techni
 
 Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlicher Automat (Finite State Machine)** modelliert. Der Smart Contract erlaubt Zustandsübergänge nur, wenn definierte Vorbedingungen erfüllt sind.
 ### Prozess-Logik (State Machine)
-~~~mermaid
 stateDiagram-v2
-  [*] --> Initialisierung
+  direction LR
 
-  state "Initialisierung" as Initialisierung
-  state "Offenlage" as Offenlage
-  state "Prüfung" as Pruefung
-  state "Beschluss" as Beschluss
+  [*] --> Antrag
+  Antrag --> Pruefung
 
-  Initialisierung --> Offenlage: Startzeitpunkt erreicht
-  note right of Offenlage
-    Bürger können Einwendungen senden.
-    Smart Contract prüft Frist und Hash.
-  end note
+  Pruefung --> Ruecksendung: unvollständig
+  Ruecksendung --> Ruecklauf
+  Ruecklauf --> Pruefung: Re-Check
+  Pruefung --> Anhoerung: vollständig
 
-  Offenlage --> Offenlage: Einwendung eingegangen
+  state "Anhörung" as Anhoerung {
+    [*] --> Veroeff
+    Veroeff --> Toeb
+    Toeb --> Frist
+    Frist --> Auswertung
 
-  Offenlage --> Pruefung: Frist abgelaufen (Auto-Lock)
-  note right of Pruefung
-    Keine neuen Eingaben mehr möglich.
-    Status ist "read-only".
-  end note
+    Auswertung --> Keine: 0 Einw.
+    Auswertung --> Einw: Einw. da
 
-  Pruefung --> Beschluss: Finalisierung durch Behörde
-  Beschluss --> [*]: Abschluss
+    Einw --> Synopse
+    Synopse --> ET: ET nötig?
+    ET --> Abarb: ja
+    ET --> Abarb: nein
+    Abarb --> Beschluss
+    Keine --> Beschluss
+
+    Beschluss --> Rechtskraft: +4 Wochen
+    Rechtskraft --> [*]
+  }
+
+  Anhoerung --> [*]
 
 ~~~
 
