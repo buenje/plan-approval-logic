@@ -40,6 +40,7 @@ stateDiagram-v2
   Pruefung --> Ruecksendung: unvollständig
   Ruecksendung --> Ruecklauf
   Ruecklauf --> Pruefung: Re-Check
+
   Pruefung --> Anhoerung: vollständig
 
   state "Anhörung" as Anhoerung {
@@ -53,16 +54,16 @@ stateDiagram-v2
 
     Einw --> Synopse
     Synopse --> ET: ET nötig?
+
     ET --> Abarb: ja
     ET --> Abarb: nein
+
     Abarb --> Beschluss
     Keine --> Beschluss
 
     Beschluss --> Rechtskraft: +4 Wochen
     Rechtskraft --> [*]
   }
-
-  Anhoerung --> [*]
 
 ~~~
 
