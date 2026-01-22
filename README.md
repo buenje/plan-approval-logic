@@ -25,7 +25,6 @@ Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in techni
 | **Bekanntmachung** | § 73 Abs. 5 VwVfG | `event ObjectionRegistered(address indexed sender, ...)` <br> *Erzeugt einen öffentlichen, unveränderbaren Log-Eintrag.* |
 | **Unveränderbarkeit** | Rechtsstaatsprinzip | `mapping(bytes32 => Objection) private objections` <br> *Keine Update-Funktion für bereits geschriebene Daten.* |
 
-Die dargestellten Codefragmente dienen ausschließlich der technischen Abbildung formaler Verfahrenslogiken und ersetzen weder behördliche Entscheidungen noch rechtliche Würdigung.
 ---
 
 ## 🛠 Technische Architektur (State Machine)
