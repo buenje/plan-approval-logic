@@ -31,34 +31,33 @@ Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in techni
 
 Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlicher Automat (Finite State Machine)** modelliert. Der Smart Contract erlaubt Zustandsübergänge nur, wenn definierte Vorbedingungen erfüllt sind.
 ### Prozess-Logik (State Machine)
-~~~
+```mermaid
 flowchart LR
-  A([Start]) --> B[Antrag]
-  B --> C[Prüfung]
+    A([Start]) --> B[Antrag]
+    B --> C[Prüfung]
 
-  C -->|unvollständig| D[Rücksendung]
-  D --> E[Rücklauf]
-  E --> C
+    C -->|unvollständig| D[Rücksendung]
+    D --> E[Rücklauf]
+    E --> C
 
-  C -->|vollständig| F[[Anhörung]]
+    C -->|vollständig| F[[Anhörung]]
 
-  subgraph ANH["Anhörung"]
-    F1[Veröffentlichung] --> F2[TÖB]
-    F2 --> F3[Frist]
-    F3 --> F4[Auswertung]
-    F4 -->|0 Einw.| F5[Beschluss]
-    F4 -->|Einw. da| F6[Synopse]
-    F6 --> F7{ET nötig?}
-    F7 -->|ja| F8[Abarbeitung]
-    F7 -->|nein| F8
-    F8 --> F5
-    F5 --> F9[Rechtskraft +4 Wochen]
-  end
+    subgraph ANH["Anhörung"]
+        F1[Veröffentlichung] --> F2[TÖB]
+        F2 --> F3[Frist]
+        F3 --> F4[Auswertung]
+        F4 -->|0 Einw.| F5[Beschluss]
+        F4 -->|Einw. da| F6[Synopse]
+        F6 --> F7{ET nötig?}
+        F7 -->|ja| F8[Abarbeitung]
+        F7 -->|nein| F8
+        F8 --> F5
+        F5 --> F9[Rechtskraft +4 Wochen]
+    end
 
-  F --> F1
-  F9 --> Z([Ende])
-
-~~~
+    F --> F1
+    F9 --> Z([Ende])
+```
 
 ## 🚀 Quick Start (Keine Installation nötig)
 
