@@ -63,40 +63,80 @@ flowchart LR
 ```
 
 Und hier ist das Detail-Verfahren für Planänderungen (§ 76 VwVfG):
+{/* Schritt 5: Eingang der Stellungnahmen & Einwendungen */}
+            <div className="flex items-start gap-4">
+              <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">5</div>
+              <div className="flex-grow">
+                <div className="font-semibold">Eingang & Bündelung (On-Chain Logging)</div>
+                <div className="text-sm text-gray-600 mt-1">
+                  Sammlung aller Eingänge aus drei Quellen:
+                  <ul className="list-disc ml-5 mt-1 text-xs">
+                    <li><strong>TÖB:</strong> Fachbehörden, Gemeinden</li>
+                    <li><strong>Vereinigungen:</strong> Naturschutz (§ 63 BNatSchG)</li>
+                    <li><strong>Private:</strong> Betroffene Eigentümer/Anwohner</li>
+                  </ul>
+                </div>
+                <div className="bg-purple-50 p-2 rounded mt-2 text-xs font-mono border border-purple-200">
+                  Status: WAITING_FOR_FEEDBACK -> RECEIVED
+                </div>
+              </div>
+            </div>
 
-```mermaid
-flowchart TD
-    %% Styling
-    classDef start fill:#2563eb,stroke:#1d4ed8,color:white,font-weight:bold;
-    classDef stop fill:#dc2626,stroke:#b91c1c,color:white;
-    classDef process fill:#eff6ff,stroke:#3b82f6,color:black;
-    classDef decision fill:#fff7ed,stroke:#f97316,color:black;
-    classDef blockchain fill:#f3e8ff,stroke:#7e22ce,color:black,stroke-dasharray: 5 5;
+            <div className="border-l-2 border-gray-300 ml-4 h-8"></div>
 
-    Start([Antrag auf Planänderung<br/>§ 76 Abs. 1 VwVfG]):::start --> IdentCheck{Identität des<br/>Vorhabens gewahrt?}:::decision
+            {/* Schritt 6: Erstellung der Synopse */}
+            <div className="flex items-start gap-4">
+              <div className="bg-indigo-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">6</div>
+              <div className="flex-grow">
+                <div className="font-semibold">VT erstellt Synopse (Das "Gegenüberstellungs-Dokument")</div>
+                <div className="text-sm text-gray-600 mt-1">
+                  Der Vorhabenträger (VT) muss jeden Punkt erwidern.
+                </div>
+                <div className="bg-white p-3 rounded mt-2 border border-gray-300 shadow-sm">
+                  <table className="w-full text-xs text-left">
+                    <thead>
+                      <tr className="bg-gray-100 border-b">
+                        <th className="p-1">Lfd. Nr.</th>
+                        <th className="p-1">Einwender</th>
+                        <th className="p-1">Argument</th>
+                        <th className="p-1">Erwiderung VT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b">
+                        <td className="p-1">001</td>
+                        <td className="p-1">Naturschutz-V.</td>
+                        <td className="p-1">Lärmschutz...</td>
+                        <td className="p-1 text-blue-600">Lärmwand wird erhöht...</td>
+                      </tr>
+                      <tr>
+                        <td className="p-1">002</td>
+                        <td className="p-1">Müller (Privat)</td>
+                        <td className="p-1">Flächenverlust</td>
+                        <td className="p-1 text-blue-600">Entschädigung gem. §...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
 
-    IdentCheck -- Nein --> Neubau[Aufhebung & Neubeginn<br/>§ 77 VwVfG]:::stop
-    IdentCheck -- Ja --> UVPCheck{UVP-Pflicht oder<br/>wesentliche Bedeutung?<br/>Abs. 4}:::decision
+            <div className="border-l-2 border-gray-300 ml-4 h-8"></div>
 
-    UVPCheck -- Ja --> NeuesVerfahren[Neues PF-Verfahren<br/>§ 76 Abs. 1]:::process
-    NeuesVerfahren --> Eroerterung(Verzicht auf Erörterungstermin möglich<br/>§ 18d AEG)
-
-    UVPCheck -- Nein --> Unwesentlich[Unwesentliche Bedeutung<br/>§ 76 Abs. 2 VwVfG]:::process
-    Unwesentlich --> BetroffenCheck{Alle Betroffenen<br/>zugestimmt?}:::decision
-
-    BetroffenCheck -- Ja --> Direct[Genehmigung ohne Verfahren<br/>EBA entscheidet direkt]:::process
-    BetroffenCheck -- Nein --> Anhoerung[Verfahren ohne Anhörung<br/>aber mit Beteiligung § 28 VwVfG]:::process
-
-    %% Blockchain Integration Visualisierung
-    subgraph BC [Blockchain Layer - Versioning]
-        B1[Block #101: Ursprungsplan]:::blockchain -.-> B2[Block #205: Planänderung]:::blockchain
-        B2 -.-> B3[Smart Contract: Merged View]:::blockchain
-    end
-
-    Direct -.-> B2
-    Anhoerung -.-> B2
-    NeuesVerfahren -.-> B2
-```mermaid
+            {/* Schritt 7: Hash der Synopse auf Blockchain */}
+            <div className="flex items-start gap-4">
+              <div className="bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">7</div>
+              <div className="flex-grow">
+                <div className="font-semibold">Fixierung der Synopse (Unveränderbarkeit)</div>
+                <div className="text-sm text-gray-600 mt-1">
+                  Bevor das EBA prüft, wird die Synopse per Hash "eingefroren". 
+                  Nachträgliche Änderungen an der Erwiderung des VT sind nicht unbemerkt möglich.
+                </div>
+                <div className="bg-gray-50 p-2 rounded mt-2 text-xs font-mono border border-gray-200">
+                  Tx: RegisterSynopse(hash_synopse_v1, count_einwendungen=47)
+                </div>
+              </div>
+            </div>
 
 ## 🚀 Quick Start (Keine Installation nötig)
 
