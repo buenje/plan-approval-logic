@@ -75,6 +75,7 @@ flowchart LR
     
     %% Ende
     Bau -.-> Einheit
+mermaid```
 
 ## 🚀 Quick Start (Keine Installation nötig)
 
