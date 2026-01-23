@@ -67,7 +67,7 @@ flowchart LR
     
     %% Ende
     Bau -.-> Einheit
-
+```mermaid
 ## 🚀 Quick Start (Keine Installation nötig)
 
 Um den Smart Contract und die Logik ohne lokale Entwicklungsumgebung zu testen, kann der Code direkt in der Web-IDE **Remix** ausgeführt werden.
