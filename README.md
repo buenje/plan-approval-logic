@@ -48,6 +48,22 @@ flowchart LR
 
 Und hier ist das Detail-Verfahren für Planänderungen:
 
+## Prozess-Logik (State Machine)
+
+Das ist der allgemeine Ablauf:
+
+```mermaid
+flowchart LR
+    A([Start]) --> B[Antrag]
+    B --> C[Prüfung]
+    C -->|unvollständig| D[Rücksendung]
+    D --> E[Rücklauf]
+    E --> C
+    C -->|vollständig| F[[Anhörung]]
+```
+
+Und hier ist das Detail-Verfahren für Planänderungen (§ 76 VwVfG):
+
 ```mermaid
 flowchart TD
     %% Styling
@@ -80,8 +96,7 @@ flowchart TD
     Direct -.-> B2
     Anhoerung -.-> B2
     NeuesVerfahren -.-> B2
-```
-```
+```mermaid
 
 ## 🚀 Quick Start (Keine Installation nötig)
 
