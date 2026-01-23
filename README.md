@@ -35,6 +35,8 @@ Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlic
 Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird und am Ende wieder zu einer rechtlichen Einheit verschmilzt.
 ### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
 
+### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
+
 Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
 
 ```mermaid
@@ -45,25 +47,32 @@ flowchart LR
     classDef merge fill:#ecfccb,stroke:#4d7c0f,color:#365314,stroke-width:4px;
 
     %% 1. Der Hauptstrang
-    Start((Ursprungs-<br/>Plan)):::main -->|Laufendes Verfahren| Trigger{Änderungs-<br/>bedarf}:::main
+    Start((Ursprungs-<br/>Plan)):::main
+    Trigger{Änderungs-<br/>bedarf}:::main
+    Bau[Bauausführung<br/>unveränderter Teile]:::main
     
-    %% Virtueller Weiterbau
-    Trigger -.->|"Unveränderte Teile"| Bau[Bauausführung<br/>unveränderter Teile]:::main
+    %% Verbindungen Hauptstrang
+    Start -- "Laufendes Verfahren" --> Trigger
+    Trigger -.- "Unveränderte Teile" .-> Bau
 
     %% 2. Die Extraktion (Orange)
     subgraph Extraction [Extraktion: Planänderungsverfahren]
         direction TB
         Antrag[Antrag §76 Abs.1]:::change
-        Pruefung[Prüfung:<br/>Wesentlichkeit?]:::change
-        Beteiligung[Beteiligung<br/>Betroffener]:::change
-        Beschluss[Änderungs-<br/>beschluss]:::change
+        Pruefung["Prüfung:<br/>Wesentlichkeit?"]:::change
+        Beteiligung["Beteiligung<br/>Betroffener"]:::change
+        Beschluss["Änderungs-<br/>beschluss"]:::change
         
         Antrag --> Pruefung --> Beteiligung --> Beschluss
     end
 
-    %% Verbindungen (WICHTIG: Anführungszeichen bei Sonderzeichen!)
-    Trigger ==>|"Extraktion<br/>(Checkout)"| Antrag
-    Beschluss ==>|"Verschmelzung<br/>(Merge)"| Einheit((Rechtliche<br/>Einheit)):::merge
+    %% Die problematischen Verbindungen (Jetzt repariert mit Anführungszeichen-Syntax)
+    Trigger == "Extraktion<br/>(Checkout)" ==> Antrag
+    
+    %% Ziel-Knoten definieren
+    Einheit((Rechtliche<br/>Einheit)):::merge
+    
+    Beschluss == "Verschmelzung<br/>(Merge)" ==> Einheit
     
     %% Ende
     Bau -.-> Einheit
