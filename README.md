@@ -41,7 +41,37 @@ flowchart LR
     E --> C
 
     C -->|vollständig| F[[Anhörung]]
+flowchart TD
+    %% Styling
+    classDef start fill:#2563eb,stroke:#1d4ed8,color:white,font-weight:bold;
+    classDef stop fill:#dc2626,stroke:#b91c1c,color:white;
+    classDef process fill:#eff6ff,stroke:#3b82f6,color:black;
+    classDef decision fill:#fff7ed,stroke:#f97316,color:black;
+    classDef blockchain fill:#f3e8ff,stroke:#7e22ce,color:black,stroke-dasharray: 5 5;
 
+    Start([Antrag auf Planänderung<br/>§ 76 Abs. 1 VwVfG]):::start --> IdentCheck{Identität des<br/>Vorhabens gewahrt?}:::decision
+
+    IdentCheck -- Nein --> Neubau[Aufhebung & Neubeginn<br/>§ 77 VwVfG]:::stop
+    IdentCheck -- Ja --> UVPCheck{UVP-Pflicht oder<br/>wesentliche Bedeutung?<br/>Abs. 4}:::decision
+
+    UVPCheck -- Ja --> NeuesVerfahren[Neues PF-Verfahren<br/>§ 76 Abs. 1]:::process
+    NeuesVerfahren --> Eroerterung(Verzicht auf Erörterungstermin möglich<br/>§ 18d AEG)
+
+    UVPCheck -- Nein --> Unwesentlich[Unwesentliche Bedeutung<br/>§ 76 Abs. 2 VwVfG]:::process
+    Unwesentlich --> BetroffenCheck{Alle Betroffenen<br/>zugestimmt?}:::decision
+
+    BetroffenCheck -- Ja --> Direct[Genehmigung ohne Verfahren<br/>EBA entscheidet direkt]:::process
+    BetroffenCheck -- Nein --> Anhoerung[Verfahren ohne Anhörung<br/>aber mit Beteiligung § 28 VwVfG]:::process
+
+    %% Blockchain Integration Visualisierung
+    subgraph BC [Blockchain Layer - Versioning]
+        B1[Block #101: Ursprungsplan]:::blockchain -.-> B2[Block #205: Planänderung]:::blockchain
+        B2 -.-> B3[Smart Contract: Merged View]:::blockchain
+    end
+
+    Direct -.-> B2
+    Anhoerung -.-> B2
+    NeuesVerfahren -.-> B2
     subgraph ANH["Anhörung"]
         F1[Veröffentlichung] --> F2[TÖB]
         F2 --> F3[Frist]
