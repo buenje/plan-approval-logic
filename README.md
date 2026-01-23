@@ -65,7 +65,7 @@ flowchart LR
         Antrag --> Pruefung --> Beteiligung --> Beschluss
     end
 
-    %% Die kritischen Verbindungen (Jetzt 100% sicher für GitHub)
+    %% Die kritischen Verbindungen (100% sicher)
     Trigger == "Extraktion<br/>(Checkout)" ==> Antrag
     
     %% Ziel-Knoten
