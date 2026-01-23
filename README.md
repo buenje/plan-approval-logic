@@ -65,7 +65,7 @@ flowchart LR
         Antrag --> Pruefung --> Beteiligung --> Beschluss
     end
 
-    %% Die kritischen Verbindungen (Jetzt mit Pipe und Quotes gesichert)
+    %% Die kritischen Verbindungen (Gesichert)
     Trigger ==>|"Extraktion<br/>(Checkout)"| Antrag
     
     %% Ziel-Knoten
