@@ -50,8 +50,8 @@ flowchart LR
     Trigger{Änderungs-<br/>bedarf}:::main
     Bau[Bauausführung<br/>unveränderter Teile]:::main
     
-    %% Verbindungen Hauptstrang (Repariert)
-    Start -->|"Laufendes Verfahren"| Trigger
+    %% Verbindungen Hauptstrang (Sichere Syntax)
+    Start -- "Laufendes Verfahren" --> Trigger
     Trigger -.->|"Unveränderte Teile"| Bau
 
     %% 2. Die Extraktion (Orange)
@@ -65,17 +65,16 @@ flowchart LR
         Antrag --> Pruefung --> Beteiligung --> Beschluss
     end
 
-    %% Die kritischen Verbindungen (Gesichert)
-    Trigger ==>|"Extraktion<br/>(Checkout)"| Antrag
+    %% Die kritischen Verbindungen (Jetzt 100% sicher für GitHub)
+    Trigger == "Extraktion<br/>(Checkout)" ==> Antrag
     
     %% Ziel-Knoten
     Einheit((Rechtliche<br/>Einheit)):::merge
     
-    Beschluss ==>|"Verschmelzung<br/>(Merge)"| Einheit
+    Beschluss == "Verschmelzung<br/>(Merge)" ==> Einheit
     
     %% Ende
     Bau -.-> Einheit
-mermaid```
 
 ## 🚀 Quick Start (Keine Installation nötig)
 
