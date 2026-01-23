@@ -34,6 +34,10 @@ Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlic
 
 Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
 
+### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
+
+Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
+
 ```mermaid
 flowchart LR
     %% Styles
