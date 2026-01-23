@@ -32,11 +32,6 @@ Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in techni
 Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlicher Automat (Finite State Machine)** modelliert. Der Smart Contract erlaubt Zustandsübergänge nur, wenn definierte Vorbedingungen erfüllt sind.
 ### Prozess-Logik (State Machine)
 
-Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird und am Ende wieder zu einer rechtlichen Einheit verschmilzt.
-### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
-
-### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
-
 Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
 
 ```mermaid
@@ -51,9 +46,9 @@ flowchart LR
     Trigger{Änderungs-<br/>bedarf}:::main
     Bau[Bauausführung<br/>unveränderter Teile]:::main
     
-    %% Verbindungen Hauptstrang
-    Start -- "Laufendes Verfahren" --> Trigger
-    Trigger -.- "Unveränderte Teile" .-> Bau
+    %% Verbindungen Hauptstrang (Repariert)
+    Start -->|"Laufendes Verfahren"| Trigger
+    Trigger -.->|"Unveränderte Teile"| Bau
 
     %% 2. Die Extraktion (Orange)
     subgraph Extraction [Extraktion: Planänderungsverfahren]
@@ -66,16 +61,17 @@ flowchart LR
         Antrag --> Pruefung --> Beteiligung --> Beschluss
     end
 
-    %% Die problematischen Verbindungen (Jetzt repariert mit Anführungszeichen-Syntax)
-    Trigger == "Extraktion<br/>(Checkout)" ==> Antrag
+    %% Die kritischen Verbindungen (Jetzt mit Pipe und Quotes gesichert)
+    Trigger ==>|"Extraktion<br/>(Checkout)"| Antrag
     
-    %% Ziel-Knoten definieren
+    %% Ziel-Knoten
     Einheit((Rechtliche<br/>Einheit)):::merge
     
-    Beschluss == "Verschmelzung<br/>(Merge)" ==> Einheit
+    Beschluss ==>|"Verschmelzung<br/>(Merge)"| Einheit
     
     %% Ende
     Bau -.-> Einheit
+
 ## 🚀 Quick Start (Keine Installation nötig)
 
 Um den Smart Contract und die Logik ohne lokale Entwicklungsumgebung zu testen, kann der Code direkt in der Web-IDE **Remix** ausgeführt werden.
