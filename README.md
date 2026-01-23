@@ -35,22 +35,22 @@ Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlic
 Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird und am Ende wieder zu einer rechtlichen Einheit verschmilzt.
 ### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
 
-Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird ("Checkout") und am Ende wieder zu einer rechtlichen Einheit verschmilzt ("Merge").
+Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
 
 ```mermaid
 flowchart LR
-    %% Styles definieren
+    %% Styles
     classDef main fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px;
     classDef change fill:#ffedd5,stroke:#f97316,color:#9a3412,stroke-width:2px,stroke-dasharray: 5 5;
     classDef merge fill:#ecfccb,stroke:#4d7c0f,color:#365314,stroke-width:4px;
 
-    %% 1. Der Hauptstrang (Blau)
+    %% 1. Der Hauptstrang
     Start((Ursprungs-<br/>Plan)):::main -->|Laufendes Verfahren| Trigger{Änderungs-<br/>bedarf}:::main
     
     %% Virtueller Weiterbau
-    Trigger -.->|Unveränderte Teile| Bau[Bauausführung<br/>unveränderter Teile]:::main
+    Trigger -.->|"Unveränderte Teile"| Bau[Bauausführung<br/>unveränderter Teile]:::main
 
-    %% 2. Die Extraktion (Orange - Der Bypass)
+    %% 2. Die Extraktion (Orange)
     subgraph Extraction [Extraktion: Planänderungsverfahren]
         direction TB
         Antrag[Antrag §76 Abs.1]:::change
@@ -61,13 +61,12 @@ flowchart LR
         Antrag --> Pruefung --> Beteiligung --> Beschluss
     end
 
-    %% Verbindungen (Pfeile)
-    Trigger ==>|Extraktion<br/>(Checkout)| Antrag
-    Beschluss ==>|Verschmelzung<br/>(Merge)| Einheit((Rechtliche<br/>Einheit)):::merge
+    %% Verbindungen (WICHTIG: Anführungszeichen bei Sonderzeichen!)
+    Trigger ==>|"Extraktion<br/>(Checkout)"| Antrag
+    Beschluss ==>|"Verschmelzung<br/>(Merge)"| Einheit((Rechtliche<br/>Einheit)):::merge
     
     %% Ende
     Bau -.-> Einheit
-```mermaid
 ## 🚀 Quick Start (Keine Installation nötig)
 
 Um den Smart Contract und die Logik ohne lokale Entwicklungsumgebung zu testen, kann der Code direkt in der Web-IDE **Remix** ausgeführt werden.
