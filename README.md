@@ -90,11 +90,11 @@ Um den Smart Contract und die Logik ohne lokale Entwicklungsumgebung zu testen, 
 
 ## 📂 Repository Struktur
 
-```text
-/plan-approval-logic
+```/plan-approval-logic
 ├── contracts/
-│   └── PlanApproval.sol       # Der Haupt-Vertrags-Code (Solidity)
-├── tests/
-│   └── PlanApproval.test.js   # Unit Tests zur Verifizierung der Fristenlogik
-├── docs/                      # Zusätzliche Dokumentation & Diagramme
-└── README.md                  # Diese Datei
+│   ├── PlanApproval.sol (generisch)
+│   └── planfeststellung/
+│       └── WorkflowPFV.sol (spezifisch für Eisenbahn)
+├── docs/
+│   └── eisenbahn-planfeststellung.md
+└── README.md (erweitern)
