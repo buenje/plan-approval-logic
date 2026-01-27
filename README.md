@@ -1,100 +1,115 @@
-# Smart Contract PoC: Planfeststellungsverfahren (PlanApproval)
+# Eisenbahn-Planfeststellung Smart Contract
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Solidity](https://img.shields.io/badge/solidity-%5E0.8.0-lightgrey)
-![Status](https://img.shields.io/badge/status-Academic_PoC-orange)
+Spezifische Implementierung des generischen PlanApproval-Frameworks für Planfeststellungsverfahren im Eisenbahnwesen nach § 18 AEG i.V.m. § 76 VwVfG.
 
-> **Begleit-Repository zum Fachartikel:** *"Smart Contracts im Planfeststellungsverfahren: Ansätze für eine rechtssichere und effiziente Verfahrensstruktur"
+## 🎯 Anwendungsfall
 
-## 📄 Über dieses Projekt
+Dieses Modul demonstriert wie Blockchain-Technologie die Nachvollziehbarkeit und Prozessdisziplin in Eisenbahn-Planfeststellungsverfahren erhöhen kann, ohne die juristische Abwägung oder hoheitliche Entscheidungen zu ersetzen.
 
-Dieses Repository enthält den **Proof of Concept (PoC)** für die Implementierung deutscher Verwaltungsverfahrens-Logik auf der Ethereum Virtual Machine (EVM).
+## 📋 Verfahrensablauf
 
-Ziel ist es, die abstrakten rechtlichen Anforderungen des **Verwaltungsverfahrensgesetzes (VwVfG)** – insbesondere im Kontext komplexer Planfeststellungsverfahren (§ 73 VwVfG) – in deterministischen, unveränderbaren Code zu übersetzen. Der Fokus liegt auf Transparenz, Fristenwahrung und Revisionssicherheit.
+```
+Einreichung → Vollständigkeit → Auslegung → Abwägung → Beschlussentwurf → Beschluss → Rechtskraft
+```
+
+Jeder Übergang wird durch "Gates" kontrolliert, die definierte Bedingungen prüfen:
+- Vollständigkeit der Unterlagen (nach EBA-Leitfaden)
+- Einhaltung von Fristen (TÖB-Beteiligung, Auslegung)
+- Bearbeitung aller Einwendungen
+- Interne Freigaben (Fachprüfungen)
+
+## 🏗️ Architektur
+
+### Off-Chain (Arbeitsebene)
+- E-Akte / DMS
+- Antrags- und Beteiligungsportal des Bundes
+- Personenbezogene Daten
+- Originaldokumente
+
+### On-Chain (Beweisebene)
+- Hash-Registry (Merkle-Roots der Dokumentenpakete)
+- Workflow-Gates (State Machine)
+- Event-Trail (Audit-Log)
+
+## 👥 Rollen
+
+| Rolle | Beschreibung | Befugnisse |
+|-------|--------------|------------|
+| `Sachbereich1PF` | Verfahrensleitung | Phasenwechsel, Workflow-Konfiguration |
+| `Fach` | Fachprüfer | Fachliche Stellungnahmen (Wasser, Natur, etc.) |
+| `Toeb` | Träger öffentlicher Belange | Stellungnahmen gemäß Zuständigkeit |
+| `Vorhabentraeger` | Antragsteller (z.B. DB InfraGO) | Unterlagen einreichen, Planänderungen |
+| `None` | Öffentlichkeit | Lesezugriff, Einwendungen einreichen |
+
+## 📄 Rechtliche Grundlagen
+
+- § 18 Allgemeines Eisenbahngesetz (AEG)
+- § 76 Verwaltungsverfahrensgesetz (VwVfG)
+- Planfeststellungsrichtlinien des Eisenbahn-Bundesamtes
+- Leitfaden zur Gestaltung von Antragsunterlagen (EBA)
+
+## 🔐 Datenschutz
+
+**DSGVO-konform durch strikte Trennung:**
+- **On-Chain:** Nur Hashes, IDs, Zeitstempel
+- **Off-Chain:** Alle Inhalte und personenbezogene Daten
+
+## 🚀 Verwendung
+
+```solidity
+// 1. Rollen zuweisen (nur Sachbereich1PF)
+workflow.rolleZuweisen(vorhabentraegerAdresse, Role.Vorhabentraeger);
+
+// 2. Verfahren einreichen (Vorhabenträger)
+bytes32 dossierId = keccak256("PF_2026_001_NBS_Hamburg_Berlin");
+bytes32 merkleRoot = calculateMerkleRoot(planunterlagen);
+workflow.verfahrenEinreichen(dossierId, merkleRoot);
+
+// 3. Vollständigkeit prüfen (Sachbereich1PF)
+workflow.vollstaendigkeitPruefen(dossierId, true);
+
+// 4. Auslegung starten
+uint256 fristEnde = block.timestamp + 30 days;
+workflow.auslegungStarten(dossierId, fristEnde);
+
+// 5. Einwendung einreichen (Öffentlichkeit)
+bytes32 einwendungsHash = keccak256(abi.encodePacked(einwendungstext));
+workflow.einwendungEinreichen(dossierId, einwendungsHash);
+```
+
+## 🧪 Tests
+
+```bash
+# Alle Tests ausführen
+forge test --match-path test/planfeststellung/*
+
+# Spezifischen Test
+forge test --match-test test_VerfahrenEinreichen
+```
+
+## 📚 Dokumentation
+
+Ausführliche Dokumentation zur Implementierung siehe:
+- [docs/eisenbahn-planfeststellung.md](../../docs/eisenbahn-planfeststellung.md)
+
+## 📖 Begleitartikel
+
+Dieses Modul begleitet den Fachartikel:
+
+**"Blockchain in der Planfeststellung – Chancen, Grenzen und ein praktikabler Architekturvorschlag"**
+
+Erschienen in: *Eisenbahntechnische Rundschau (ETR)*, Ausgabe 5/2026
+
+## ⚠️ Status
+
+**🚧 Proof of Concept (Academic PoC)**
+
+Dieses Projekt ist für Forschungs- und Demonstrationszwecke. Es ersetzt keine rechtliche Beratung und ist nicht für den produktiven Einsatz vorgesehen.
+
+## 🔗 Related Work
+
+Dieses Modul nutzt das generische Framework aus [PlanApproval.sol](../contracts/PlanApproval.sol) und passt es spezifisch für Eisenbahn-Planfeststellungsverfahren an.
 
 ---
 
-## ⚖️ Legal Engineering: Vom Gesetz zum Code
-
-Die Kerninnovation liegt in der direkten Abbildung juristischer Normen in technische Logik-Gatter. Die folgende Tabelle zeigt das Mapping zwischen VwVfG und Smart Contract Architektur:
-
-| Juristische Anforderung | Rechtsgrundlage (DE) | Technische Implementierung (Solidity) |
-| :--- | :--- | :--- |
-| **Präklusion / Fristen** | § 73 Abs. 4 VwVfG | `modifier onlyBeforeDeadline()` <br> *Sperrt Schreibzugriffe nach Ablauf des Unix-Timestamps.* |
-| **Schriftformersatz** | § 3a Abs. 2 VwVfG | `function submitObjection(string memory _hash)` <br> *Verarbeitet den kryptographischen Hash des Dokuments.* |
-| **Bekanntmachung** | § 73 Abs. 5 VwVfG | `event ObjectionRegistered(address indexed sender, ...)` <br> *Erzeugt einen öffentlichen, unveränderbaren Log-Eintrag.* |
-| **Unveränderbarkeit** | Rechtsstaatsprinzip | `mapping(bytes32 => Objection) private objections` <br> *Keine Update-Funktion für bereits geschriebene Daten.* |
-
----
-
-## 🛠 Technische Architektur (State Machine)
-
-Aus ingenieurwissenschaftlicher Sicht wird das Verwaltungsverfahren als **Endlicher Automat (Finite State Machine)** modelliert. Der Smart Contract erlaubt Zustandsübergänge nur, wenn definierte Vorbedingungen erfüllt sind.
-### Prozess-Logik (State Machine)
-
-Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
-
-### Visualisierung: Extraktion der Planänderung (§ 76 VwVfG)
-
-Hier wird gezeigt, wie die Planänderung aus dem Hauptstrang (Blau) extrahiert wird.
-
-```mermaid
-flowchart LR
-    %% Styles
-    classDef main fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px;
-    classDef change fill:#ffedd5,stroke:#f97316,color:#9a3412,stroke-width:2px,stroke-dasharray: 5 5;
-    classDef merge fill:#ecfccb,stroke:#4d7c0f,color:#365314,stroke-width:4px;
-
-    %% 1. Der Hauptstrang
-    Start((Ursprungs-<br/>Plan)):::main
-    Trigger{Änderungs-<br/>bedarf}:::main
-    Bau[Bauausführung<br/>unveränderter Teile]:::main
-    
-    %% Verbindungen Hauptstrang (Sichere Syntax)
-    Start -- "Laufendes Verfahren" --> Trigger
-    Trigger -.->|"Unveränderte Teile"| Bau
-
-    %% 2. Die Extraktion (Orange)
-    subgraph Extraction [Extraktion: Planänderungsverfahren]
-        direction TB
-        Antrag[Antrag §76 Abs.1]:::change
-        Pruefung["Prüfung:<br/>Wesentlichkeit?"]:::change
-        Beteiligung["Beteiligung<br/>Betroffener"]:::change
-        Beschluss["Änderungs-<br/>beschluss"]:::change
-        
-        Antrag --> Pruefung --> Beteiligung --> Beschluss
-    end
-
-    %% Die kritischen Verbindungen (100% sicher)
-    Trigger == "Extraktion<br/>(Checkout)" ==> Antrag
-    
-    %% Ziel-Knoten
-    Einheit((Rechtliche<br/>Einheit)):::merge
-    
-    Beschluss == "Verschmelzung<br/>(Merge)" ==> Einheit
-    
-    %% Ende
-    Bau -.-> Einheit
-
-## 🚀 Quick Start (Keine Installation nötig)
-
-Um den Smart Contract und die Logik ohne lokale Entwicklungsumgebung zu testen, kann der Code direkt in der Web-IDE **Remix** ausgeführt werden.
-
-1. **[Klicken Sie hier, um den Code in Remix zu öffnen](https://remix.ethereum.org)** (Copy-Paste des Codes aus `/contracts/PlanApproval.sol`).
-2. Kompilieren Sie den Contract (Tab "Solidity Compiler").
-3. Gehen Sie auf "Deploy & Run Transactions".
-4. Wählen Sie als Environment "Remix VM (Cancun)".
-5. Deployen Sie den Contract und testen Sie die Funktionen `submitObjection` etc.
-
----
-
-## 📂 Repository Struktur
-
-```/plan-approval-logic
-├── contracts/
-│   ├── PlanApproval.sol (generisch)
-│   └── planfeststellung/
-│       └── WorkflowPFV.sol (spezifisch für Eisenbahn)
-├── docs/
-│   └── eisenbahn-planfeststellung.md
-└── README.md (erweitern)
+**Version:** 0.1.0 | **Status:** In Entwicklung | **Lizenz:** MIT
