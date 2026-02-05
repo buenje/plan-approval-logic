@@ -1,3 +1,36 @@
+# Railway Planning Approval Smart Contract
+
+## 🇬🇧 English Overview
+
+This repository contains a proof-of-concept smart contract that models
+the procedural logic of railway planning approval processes
+(Planfeststellungsverfahren) under German administrative law.
+
+The project demonstrates how blockchain-based state machines and
+validation logic can be used to:
+- increase traceability of procedural milestones
+- ensure integrity of decision-relevant documents
+- document transitions between legally defined process phases
+
+⚠️ This project does **not** replace legal assessment, administrative
+discretion, or sovereign decision-making.  
+It serves purely as a technical and architectural exploration.
+
+### Scope
+- Rule-based workflow modeling (state machines)
+- On-chain validation gates
+- Auditability and evidence integrity
+- Separation of on-chain evidence and off-chain working processes
+
+### Status
+Academic proof of concept (PoC)  
+Research and demonstration purpose only  
+Not intended for productive or operational use
+
+---
+
+## 🇩🇪 Deutsche Beschreibung
+
 # Eisenbahn-Planfeststellung Smart Contract
 
 Spezifische Implementierung des generischen PlanApproval-Frameworks für Planfeststellungsverfahren im Eisenbahnwesen nach § 18 AEG i.V.m. § 76 VwVfG.
