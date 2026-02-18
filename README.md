@@ -129,7 +129,7 @@ Ausführliche Dokumentation zur Implementierung siehe:
 
 Dieses Modul begleitet den Fachartikel:
 
-**"Blockchain in der Planfeststellung – Chancen, Grenzen und ein praktikabler Architekturvorschlag"**
+**"Blockchain in der Planfeststellung – Möglickeiten für Effizienz und Nachvollziehbarkeit"**
 
 Erschienen in: *Eisenbahntechnische Rundschau (ETR)*, Ausgabe 5/2026
 
