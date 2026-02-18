@@ -463,7 +463,7 @@ function overrideGate(
 
 ---
 
-**Autor:** Klaus [Nachname]  
+**Autor:** Klaus Walter  
 **Version:** 1.0  
 **Stand:** Januar 2026  
 **Lizenz:** MIT
