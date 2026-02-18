@@ -123,7 +123,7 @@ forge test --match-test test_VerfahrenEinreichen
 ## 📚 Dokumentation
 
 Ausführliche Dokumentation zur Implementierung siehe:
-- [docs/eisenbahn-planfeststellung.md](../../docs/eisenbahn-planfeststellung.md)
+-- [docs/eisenbahn-planfeststellung.md](docs/eisenbahn-planfeststellung.md)
 
 ## 📖 Begleitartikel
 
