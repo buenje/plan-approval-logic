@@ -94,7 +94,7 @@ Jeder Übergang wird durch "Gates" kontrolliert, die definierte Bedingungen prü
 workflow.rolleZuweisen(vorhabentraegerAdresse, Role.Vorhabentraeger);
 
 // 2. Verfahren einreichen (Vorhabenträger)
-bytes32 dossierId = keccak256("PF_2026_001_NBS_Hamburg_Berlin");
+bytes32 dossierId = keccak256("PF_2018_1899_Frankfurt_Mannheim");
 bytes32 merkleRoot = calculateMerkleRoot(planunterlagen);
 workflow.verfahrenEinreichen(dossierId, merkleRoot);
 
