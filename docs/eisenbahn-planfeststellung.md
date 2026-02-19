@@ -55,7 +55,7 @@ Planfeststellungsverfahren im Eisenbahnwesen sind durch ihre Komplexität und la
 ```
 ┌────────────────────────────────────────┐
 │  OFF-CHAIN (Daten & Arbeitsprozesse)   │
-│  ----------------------------------------│
+│  --------------------------------------│
 │  • E-Akte / DMS (Doweba)               │
 │  • Antrags- und Beteiligungsportal     │
 │  • Personenbezogene Daten              │
@@ -68,7 +68,7 @@ Planfeststellungsverfahren im Eisenbahnwesen sind durch ihre Komplexität und la
                │
 ┌──────────────▼─────────────────────────┐
 │  ON-CHAIN (Beweise & Kontrolle)        │
-│  ----------------------------------------│
+│  --------------------------------------│
 │  • Hash-Registry (Dokumentversionen)   │
 │  • Smart Contracts (Workflow-Logik)    │
 │  • Event-Log (Audit-Trail)             │
