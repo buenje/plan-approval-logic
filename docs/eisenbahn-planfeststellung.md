@@ -63,7 +63,9 @@ Planfeststellungsverfahren im Eisenbahnwesen sind durch ihre Komplexität und la
 │  • Fachverfahren (GIS, BIM)            │
 └──────────────┬─────────────────────────┘
                │
-               │ Hash-Synchronisation
+               │ Hash-Synchronisationgit add .
+git commit -m "docs: fix ASCII diagram border"
+git push
                │ (SHA-256, Merkle-Roots)
                │
 ┌──────────────▼─────────────────────────┐
