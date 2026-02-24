@@ -83,34 +83,11 @@ Planfeststellungsverfahren im Eisenbahnwesen sind durch ihre Komplexität und la
 ### 2. Permissioned Consortium Network
 
 **Netzwerk-Topologie:**
-```
-        ┌─────────────┐
-        │  EBA-Node   │ (Validator)
-        └──────┬──────┘
-               │
-    ┌──────────┼──────────┐
-    │          │          │
-┌───▼───┐  ┌──▼───┐  ┌───▼───┐
-│ Bund  │  │ Land │  │ Land  │ (Validators)
-│ BMVI  │  │ NRW  │  │ BY    │
-└───┬───┘  └───┬──┘  └───┬───┘
-    │          │          │
-    └──────────┼──────────┘
-               │
-        ┌──────▼──────┐
-        │   Archive   │ (Full Node)
-        │  Prüfstelle │ (Full Node)
-        └─────────────┘
-               │
-        ┌──────▼──────┐
-        │ Öffentlich. │ (Light Client)
-        │  Einwender  │ (Read-Only)
-        └─────────────┘
-```
 
-**Konsens:** IBFT 2.0 oder Tendermint (Byzantine Fault Tolerant)
-**Finalität:** 2-5 Sekunden
-**Blockzeit:** 1-3 Sekunden
+![Konsortial-Blockchain für Planfeststellungsverfahren](images/blockchain-architektur-300dpi.jpg)
+
+**Konsens:** PoA (Proof of Authority) · EVM-kompatibel · Private/Permissioned Network
+
 
 ### 3. Legal Engineering Mapping
 
