@@ -147,9 +147,9 @@ function _checkGate_Auslegung(bytes32 _dossierId) internal view {
 }
 ```
 
-#### Gate 3: Auslegung → Abwägung
+#### Gate 3: Auslegung → Anhörung
 ```solidity
-function _checkGate_Abwaegung(bytes32 _dossierId) internal view {
+function _checkGate_Anhoerung(bytes32 _dossierId) internal view {
     Verfahren memory v = verfahren[_dossierId];
     
     // Pflicht: Auslegungsfrist abgelaufen
@@ -160,7 +160,7 @@ function _checkGate_Abwaegung(bytes32 _dossierId) internal view {
 }
 ```
 
-#### Gate 4: Abwägung → Beschlussentwurf
+#### Gate 4: Anhörung → Beschlussentwurf
 ```solidity
 function _checkGate_Beschluss(bytes32 _dossierId) internal view {
     Verfahren memory v = verfahren[_dossierId];
@@ -205,7 +205,7 @@ event EinwendungEingereicht(
 
 ```solidity
 // 1. EINREICHUNG (Vorhabenträger)
-bytes32 dossierId = keccak256("PF_2026_042_ABS_Hamburg_Hannover");
+bytes32 dossierId = keccak256("PF_1899_001_NBS_Frankfurt_Mannheim");
 bytes32 merkleRoot = calculateMerkleRoot(planunterlagen);
 workflow.verfahrenEinreichen(dossierId, merkleRoot);
 
