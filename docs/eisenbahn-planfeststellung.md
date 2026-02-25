@@ -21,12 +21,9 @@
 ### Motivation
 
 Planfeststellungsverfahren im Eisenbahnwesen sind durch ihre Komplexität und lange Verfahrensdauer gekennzeichnet. Die Blockchain-Technologie bietet Potenzial zur Verbesserung der:
-- **Nachvollziehbarkeit** aller Verfahrensschritte
-- **Transparenz** gegenüber allen Beteiligten
-- **Prozessdisziplin** durch automatisierte Gates
-- **Effizienzgewinn bei der Nachvollziehbarkeit (wer hat wann was gesehen/eingereicht)
-- **Vertrauensbildung gegenüber der Öffentlichkeit und Einwendern
-- **Prozessoptimierung durch automatisierte Statusnachweise
+- **Nachvollziehbarkeit** aller Verfahrensschritte lückenlose Dokumentation von Einreichungen, Zustellungen und Statusänderungen
+- **Transparenz** gegenüber allen Beteiligten Verfahrensstände und Dokumentenstatus sind für Beteiligte jederzeit eigenständig verifizierbar, ohne Akteneinsichtsantrag
+- **Prozessdisziplin** durch automatisierte GatesVerfahrensschritte können erst nach erfüllten Voraussetzungen fortschreiten
 
 ### Abgrenzung
 
