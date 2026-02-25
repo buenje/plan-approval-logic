@@ -42,7 +42,7 @@ Dieses Modul demonstriert wie Blockchain-Technologie die Nachvollziehbarkeit und
 ## 📋 Verfahrensablauf
 
 ```
-Einreichung → Vollständigkeit → Auslegung → Abwägung → Beschlussentwurf → Beschluss → Rechtskraft
+Einreichung → Vollständigkeit → Auslegung → Anhörung → Beschlussentwurf → Beschluss → Rechtskraft
 ```
 
 Jeder Übergang wird durch "Gates" kontrolliert, die definierte Bedingungen prüfen:
