@@ -24,7 +24,9 @@ Planfeststellungsverfahren im Eisenbahnwesen sind durch ihre Komplexität und la
 - **Nachvollziehbarkeit** aller Verfahrensschritte
 - **Transparenz** gegenüber allen Beteiligten
 - **Prozessdisziplin** durch automatisierte Gates
-- **Rechtssicherheit** durch unveränderbare Audit-Trails
+- **Effizienzgewinn bei der Nachvollziehbarkeit (wer hat wann was gesehen/eingereicht)
+- **Vertrauensbildung gegenüber der Öffentlichkeit und Einwendern
+- **Prozessoptimierung durch automatisierte Statusnachweise
 
 ### Abgrenzung
 
