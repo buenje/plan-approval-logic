@@ -1,180 +1,135 @@
-# Plan Approval Logic — Smart Contract
+# Plan Approval Logic — Smart Contract für Planfeststellungsverfahren
 
-## 🇬🇧 English Overview
+> Technischer Demonstrator zum Fachartikel **„Blockchain in der Planfeststellung: Möglichkeiten für Effizienz und Nachvollziehbarkeit"**, erschienen in *Eisenbahntechnische Rundschau (ETR)*, Ausgabe 5/2026.
 
-This repository contains a proof-of-concept smart contract that models
-the procedural logic of formal planning approval processes
-(Planfeststellungsverfahren) under German administrative law
-(§ 18 AEG in conjunction with §§ 72 ff. VwVfG).
-
-The project demonstrates how blockchain-based state machines and
-validation logic can be used to:
-
-* increase traceability of procedural milestones
-* ensure integrity of decision-relevant documents
-* document transitions between legally defined process phases
-
-⚠️ This project does **not** replace legal assessment, administrative
-discretion, or sovereign decision-making. It serves purely as a
-technical and architectural exploration based on publicly available
-legal sources.
-
-### Scope
-
-* Rule-based workflow modeling (state machines)
-* On-chain validation gates
-* Auditability and evidence integrity
-* Separation of on-chain evidence and off-chain working processes
-
-### Status
-
-Academic proof of concept (PoC). Research and demonstration purpose only.
-Not intended for productive or operational use.
+Dieses Repository enthält einen Solidity-Smart-Contract, der die Verfahrenslogik eines Eisenbahn-Planfeststellungsverfahrens nach § 18 AEG i. V. m. §§ 72 ff. VwVfG als Zustandsautomat abbildet. Das Projekt ist ein Forschungs- und Demonstrationsprojekt und **nicht für den produktiven Einsatz vorgesehen**.
 
 ---
 
-## 🇩🇪 Deutsche Beschreibung
+## 🔗 Live-Demo auf Sepolia
 
-Generische Referenzimplementierung eines Zustandsautomaten für formelle
-Planfeststellungsverfahren nach § 18 AEG i.V.m. §§ 72 ff. VwVfG.
+Der Contract ist auf dem Ethereum Sepolia Testnet deployed und verifiziert. Leser können den Quellcode und alle Transaktionen direkt einsehen:
 
-## 🎯 Gegenstand
+| | |
+|---|---|
+| **Contract-Adresse** | `0x2aa68e465455e2da532dc4c8a64ceee52703f25e` |
+| **Netzwerk** | Ethereum Sepolia Testnet |
+| **Etherscan** | [sepolia.etherscan.io/address/0x2aa68e…3f25e](https://sepolia.etherscan.io/address/0x2aa68e465455e2da532dc4c8a64ceee52703f25e#code) |
+| **Verifizierung** | ✅ Source Code Verified (Exact Match) |
 
-Dieses Repository demonstriert, wie blockchainbasierte Zustandsautomaten
-und Validierungslogik grundsätzlich eingesetzt werden können, um die
-Nachvollziehbarkeit und Prozessdisziplin in formellen Planungsverfahren
-zu erhöhen — ohne die rechtliche Abwägung oder hoheitliche Entscheidungen
-zu ersetzen.
+---
 
-Grundlage sind ausschließlich öffentlich zugängliche Rechtsquellen
-(AEG, VwVfG). Interne Regelwerke einzelner Behörden sind nicht
-Grundlage dieser Arbeit.
+## 🎯 Anwendungsfall
 
-## 📋 Modellierter Verfahrensablauf
+Der Contract demonstriert, wie sich die Verfahrensphasen eines Planfeststellungsverfahrens als endlicher Zustandsautomat (Finite State Machine) modellieren lassen. Gates zwischen den Phasen prüfen automatisch, ob alle formalen Voraussetzungen für den nächsten Schritt erfüllt sind.
+
+Die juristische Abwägung und die hoheitliche Entscheidung bleiben bei der zuständigen Behörde. Der Smart Contract ersetzt keine behördliche Entscheidung — er erzwingt lediglich die Einhaltung formaler Verfahrenslogik.
+
+---
+
+## 📋 Verfahrensablauf
+
+Sieben Verfahrensphasen, sechs Gates:
 
 ```
-Einreichung → Vollständigkeit → Auslegung → Abwägung → Beschlussentwurf → Beschluss → Rechtskraft
+Einreichung → Vollständigkeit → Auslegung → Anhörung → Beschlussentwurf → Beschluss → Rechtskraft
 ```
 
-Jeder Übergang wird durch Gates kontrolliert, die formal definierte
-Bedingungen prüfen:
+Jedes Gate prüft definierte Bedingungen:
 
-* Vollständigkeit der Unterlagen nach § 73 VwVfG
-* Einhaltung der gesetzlichen Fristen (Beteiligung Träger öffentlicher Belange, Auslegungsfrist)
-* Bearbeitung der form- und fristgerecht erhobenen Einwendungen
-* Interne fachliche Stellungnahmen als Voraussetzung der Abwägung
+- **Gate 1 (Einreichung → Vollständigkeit):** Alle Pflichtunterlagen vorhanden, Unterlagen versioniert (Merkle-Root), Vorhabenträger-Signatur
+- **Gate 2 (Vollständigkeit → Auslegung):** Vollständigkeit bestätigt, Auslegungsfrist gesetzt, Einwendungsportal geöffnet
+- **Gate 3 (Auslegung → Anhörung):** Auslegungsfrist abgelaufen, Einwendungen erfasst und zeitgestempelt, Entscheidung Erörterungstermin
+- **Gate 4 (Anhörung → Beschlussentwurf):** Jede Einwendung beantwortet, Dokumentation Erörterungstermin, keine offenen Fachprüfungen
+- **Gate 5 (Beschlussentwurf → Beschluss):** Interne Freigaben erteilt, Sachbereich-Signatur, Beschluss-Hash verankert
+- **Gate 6 (Beschluss → Rechtskraft):** Klagefrist abgelaufen (1 Monat) oder Rechtsmittel erledigt, Bestandskraft eingetreten
+
+Nur der Sachbereich Planfeststellung kann einen Phasenwechsel auslösen. Der Smart Contract prüft automatisch, ob alle Gate-Bedingungen erfüllt sind.
+
+---
 
 ## 🏗️ Architektur
 
-### Off-Chain (Arbeitsebene)
+**Off-Chain (Arbeitsebene)**
+- E-Akte und Dokumentenmanagementsystem
+- Antrags- und Beteiligungsportal des Bundes
+- Originaldokumente, personenbezogene Daten
 
-* Dokumentenmanagement / elektronische Akte
-* Antrags- und Beteiligungsportale
-* Personenbezogene Daten
-* Originaldokumente
+**On-Chain (Beweisebene)**
+- Hash-Registry (Merkle-Roots der Dokumentenpakete)
+- Workflow-Gates (Zustandsautomat)
+- Event-Trail (lückenloses Audit-Log)
 
-### On-Chain (Beweisebene)
-
-* Hash-Registry (Merkle-Roots der Dokumentenpakete)
-* Workflow-Gates (State Machine)
-* Event-Trail (Audit-Log)
-
-## 👥 Rollenmodell
-
-| Rolle | Funktion im Modell | Befugnisse |
-| --- | --- | --- |
-| `Verfahrensleitung` | Zuständige Planfeststellungsbehörde | Phasenwechsel, Workflow-Konfiguration |
-| `Fach` | Fachprüfer (z.B. Immissionsschutz, Wasserrecht, Naturschutz) | Fachliche Stellungnahmen |
-| `Toeb` | Träger öffentlicher Belange | Stellungnahmen gemäß Zuständigkeit |
-| `Vorhabentraeger` | Antragsteller (Infrastrukturunternehmen) | Unterlagen einreichen, Planänderungen |
-| `None` | Öffentlichkeit | Lesezugriff, Einwendungen einreichen |
-
-Das Modell abstrahiert von konkreten Behörden- oder Unternehmensnamen.
-Es bildet die Rollenstruktur ab, wie sie sich aus dem Verwaltungsrecht
-ergibt.
-
-## 📄 Rechtliche Grundlagen
-
-* § 18 Allgemeines Eisenbahngesetz (AEG)
-* §§ 72 ff. Verwaltungsverfahrensgesetz (VwVfG)
-
-## 🔐 Datenschutz
-
-Das Modell ist durch strikte Trennung datenschutzkonform aufgebaut:
-
-* **On-Chain:** Nur Hashes, IDs, Zeitstempel
-* **Off-Chain:** Alle Inhalte und personenbezogene Daten
-
-## 🚀 Verwendung (Beispielaufrufe)
-
-```solidity
-// 1. Rollen zuweisen (nur Verfahrensleitung)
-workflow.rolleZuweisen(vorhabentraegerAdresse, Role.Vorhabentraeger);
-
-// 2. Verfahren einreichen (Vorhabenträger)
-bytes32 dossierId = keccak256("DEMO_PROJEKT_0001");
-bytes32 merkleRoot = calculateMerkleRoot(planunterlagen);
-workflow.verfahrenEinreichen(dossierId, merkleRoot);
-
-// 3. Vollständigkeit prüfen (Verfahrensleitung)
-workflow.vollstaendigkeitPruefen(dossierId, true);
-
-// 4. Auslegung starten
-uint256 fristEnde = block.timestamp + 30 days;
-workflow.auslegungStarten(dossierId, fristEnde);
-
-// 5. Einwendung einreichen (Öffentlichkeit)
-bytes32 einwendungsHash = keccak256(abi.encodePacked(einwendungstext));
-workflow.einwendungEinreichen(dossierId, einwendungsHash);
-```
-
-Alle Bezeichner sind fiktiv und dienen ausschließlich der Demonstration.
-
-## 🧪 Tests
-
-```bash
-# Alle Tests ausführen
-forge test --match-path test/planfeststellung/*
-
-# Spezifischen Test
-forge test --match-test test_VerfahrenEinreichen
-```
-
-## 📚 Dokumentation
-
-Ausführliche Dokumentation zur Implementierung siehe:
-
-* [docs/eisenbahn-planfeststellung.md](docs/eisenbahn-planfeststellung.md)
-
-## 📖 Begleitartikel
-
-Dieses Repository begleitet einen Fachbeitrag in der
-*Eisenbahntechnischen Rundschau (ETR)*, Ausgabe 5/2026, zur
-grundsätzlichen Frage, welche Rolle Blockchain-Technologie in
-formellen Planungsverfahren spielen kann — und welche nicht.
-
-Der Artikel wie auch dieses Repository wurden privat und als
-Autorentätigkeit erstellt. Sie geben nicht die Position einer Behörde
-oder eines Dienstherrn wieder.
-
-## ⚠️ Status und Abgrenzung
-
-**🚧 Academic Proof of Concept**
-
-Dieses Projekt ist ausschließlich für Forschungs- und
-Demonstrationszwecke bestimmt. Es ersetzt keine rechtliche Beratung
-und ist nicht für den produktiven Einsatz vorgesehen.
-
-Der Code basiert auf öffentlich zugänglichen Rechtsquellen.
-Interne Regelwerke einzelner Behörden oder Unternehmen sind nicht
-eingeflossen.
-
-## 🔗 Related Work
-
-Dieses Modul nutzt ein generisches Framework zur Modellierung
-rechtlich gebundener Workflows und passt es für Planfeststellungs-
-verfahren an.
+Keine Dokumenteninhalte und keine personenbezogenen Daten gelangen auf die Blockchain. Die Verknüpfung zwischen Off-Chain-Dokumenten und On-Chain-Ankern erfolgt ausschließlich über kryptografische Hashes.
 
 ---
 
-**Version:** 0.1.0 | **Status:** In Entwicklung | **Lizenz:** MIT
+## 👥 Rollen
+
+| Rolle | Beschreibung | Befugnisse |
+|---|---|---|
+| `SACHBEREICH_ROLE` | Sachbereich 1 Planfeststellung (SB1PF) | Phasenwechsel, Gate-Prüfung, Workflow-Steuerung |
+| `EBA_ADMIN_ROLE` | EBA-Administration | Rollenverwaltung, Konfiguration |
+| `BEARBEITUNGSTEAM_ROLE` | Interne Fachprüfung | Fachliche Stellungnahmen |
+| `TOEB_ROLE` | Träger öffentlicher Belange | Fristgebundene Stellungnahmen |
+| `VORHABENTRAEGER_ROLE` | Antragsteller (z. B. DB InfraGO) | Unterlagen einreichen, Planänderungen, Nachbesserungen |
+| `KANZLEI_ROLE` | Kanzlei / Sekretariat | Verwaltungsunterstützung |
+| — | Öffentlichkeit | Einwendungen einreichen, Lesezugriff |
+
+---
+
+## 📜 Rechtliche Grundlagen
+
+- § 18 Allgemeines Eisenbahngesetz (AEG)
+- §§ 72 ff. Verwaltungsverfahrensgesetz (VwVfG)
+- Planfeststellungsrichtlinien des Eisenbahn-Bundesamtes
+- Leitfaden zur Gestaltung von Antragsunterlagen (EBA)
+
+---
+
+## 🔐 Datenschutz
+
+DSGVO-konform durch strikte Trennung:
+
+- **On-Chain:** Nur Hashes, Referenz-IDs, Zeitstempel
+- **Off-Chain:** Alle Inhalte und personenbezogenen Daten
+
+---
+
+## 🧪 Tests
+
+Der Contract wurde mit automatisierten Tests geprüft — vom regulären Verfahrensablauf bis hin zu Fehlerfällen wie verspäteten Einwendungen, unberechtigten Zugriffen und Fristversäumnissen.
+
+```bash
+forge test --match-path test/WorkflowPFV.t.sol
+```
+
+---
+
+## 📖 Begleitartikel
+
+**„Blockchain in der Planfeststellung: Möglichkeiten für Effizienz und Nachvollziehbarkeit"**
+Klaus Walter, Eisenbahntechnische Rundschau (ETR), Ausgabe 5/2026.
+
+Der Artikel skizziert ein Referenzdesign für den Einsatz von Blockchain-Technologie in der Planfeststellung und schlägt einen Shadow-Run-Piloten als realistischen Einstieg vor.
+
+---
+
+## 🚧 Status
+
+**Academic Proof of Concept.** Forschungs- und Demonstrationszwecke. Der Contract ist auf Sepolia deployed und verifiziert, ersetzt jedoch keine produktive Software und keine rechtliche Beratung.
+
+---
+
+## 📄 Lizenz
+
+MIT License — siehe [LICENSE](LICENSE).
+
+---
+
+## 👤 Autor
+
+**Dipl.-Ing. Klaus Walter**
+Technischer Beamter beim Eisenbahn-Bundesamt (EBA), Frankfurt a. M., Sachbereich 1 Planfeststellung.
+
+Die hier veröffentlichten Inhalte geben die fachliche Einschätzung des Autors wieder und stellen keine offizielle Position des Eisenbahn-Bundesamtes dar.
