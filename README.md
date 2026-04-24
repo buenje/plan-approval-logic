@@ -23,7 +23,7 @@ Der Contract ist auf dem Ethereum Sepolia Testnet deployed und verifiziert. Lese
 
 Der Contract demonstriert, wie sich die Verfahrensphasen eines Planfeststellungsverfahrens als endlicher Zustandsautomat (Finite State Machine) modellieren lassen. Gates zwischen den Phasen prüfen automatisch, ob alle formalen Voraussetzungen für den nächsten Schritt erfüllt sind.
 
-Die juristische Abwägung und die hoheitliche Entscheidung bleiben bei der zuständigen Behörde. Der Smart Contract ersetzt keine behördliche Entscheidung — er erzwingt lediglich die Einhaltung formaler Verfahrenslogik.
+Die juristische Abwägung und die hoheitliche Entscheidung bleiben bei der zuständigen Behörde. Der Smart Contract ersetzt keine behördliche Entscheidung, er erzwingt lediglich die Einhaltung formaler Verfahrenslogik.
 
 ---
 
