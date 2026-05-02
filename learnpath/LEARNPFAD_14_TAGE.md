@@ -1,6 +1,6 @@
 ## Vor dem Start
 
-→ [WorkflowPFV Verfahrensdashboard ansehen](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)
+[→ [WorkflowPFV Verfahrensdashboard ansehen](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/WorkflowPFV_v1_deployed.sol)
 Zeigt Zustandsautomat, Gate-Status und Audit-Trail — so sieht das Ergebnis aus.
 
 **Tool für alle Übungen:** Kein lokales Setup nötig.
