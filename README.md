@@ -81,7 +81,7 @@ Keine Dokumenteninhalte und keine personenbezogenen Daten gelangen auf die Block
 | `EBA_ADMIN_ROLE` | EBA-Administration | Rollenverwaltung, Konfiguration |
 | `BEARBEITUNGSTEAM_ROLE` | Interne Fachprüfung | Fachliche Stellungnahmen |
 | `TOEB_ROLE` | Träger öffentlicher Belange | Fristgebundene Stellungnahmen |
-| `VORHABENTRAEGER_ROLE` | Antragsteller (z. B. DB InfraGO) | Unterlagen einreichen, Planänderungen, Nachbesserungen |
+| `VORHABENTRAEGER_ROLE` | Antragsteller | Unterlagen einreichen, Planänderungen, Nachbesserungen |
 | `KANZLEI_ROLE` | Kanzlei / Sekretariat | Verwaltungsunterstützung |
 | — | Öffentlichkeit | Einwendungen einreichen, Lesezugriff |
 
