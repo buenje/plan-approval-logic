@@ -15,10 +15,6 @@ Contract direkt in Remix laden:
 
 ---
 
-**Demo ansehen:** Vor dem ersten Tag —  
-→ [WorkflowPFV Verfahrensdashboard](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)  
-Zeigt Zustandsautomat, Gate-Status und Audit-Trail.
-
 ## Tag 1 – Setup & Pause‑Schalter
 - Klick: `pause()` / `unpause()`; `paused()` lesen (blau).
 - Mini‑Edit: `isPaused() external view returns (bool)`.
