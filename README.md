@@ -26,6 +26,15 @@ Der Contract demonstriert, wie sich die Verfahrensphasen eines Planfeststellungs
 Die juristische Abwägung und die hoheitliche Entscheidung bleiben bei der zuständigen Behörde. Der Smart Contract ersetzt keine behördliche Entscheidung, er erzwingt lediglich die Einhaltung formaler Verfahrenslogik.
 
 ---
+## 🎓 Einstieg für Domänenexperten
+
+Du kommst aus Ingenieurwesen, Recht oder Verwaltung — und willst
+verstehen, wie man einen Smart Contract liest und anpasst?
+
+→ [14-Tage-Lernpfad (Solidity)](./learnpath/LEARNPFAD_14_TAGE.md)
+
+Strukturiert für Menschen, die in Prozessen denken, nicht in Syntax.
+40 % lesen · 30 % klicken · 30 % kleine Edits (1–10 Zeilen).
 
 ## 📋 Verfahrensablauf
 
