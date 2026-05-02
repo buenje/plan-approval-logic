@@ -5,8 +5,17 @@
 
 ---
 **Tool:** Alle Übungen laufen im Browser — kein lokales Setup nötig.  
-→ [Remix IDE öffnen](https://remix.ethereum.org)  
-Contract laden: `contracts/WorkflowPFV.sol` aus diesem Repository.
+→ [Remix IDE öffnen](https://remix.ethereum.org)
+
+**Contract laden:**  
+1. In Remix: „Load from GitHub" wählen  
+2. URL eingeben: `https://github.com/buenje/plan-approval-logic`  
+3. Datei öffnen: `WorkflowPFV.t.sol` (Haupt-Contract im Root)  
+4. Compiler: Solidity 0.8.x · EVM: London oder höher  
+5. Deployen auf: JavaScript VM (für lokale Tests)
+
+_(Blauer Button in Remix = lesen/view, kein Chain-Eintrag.  
+Oranger Button = schreiben/transact, erzeugt eine Transaktion.)_
 
 ## Tag 1 – Setup & Pause‑Schalter
 - Klick: `pause()` / `unpause()`; `paused()` lesen (blau).
