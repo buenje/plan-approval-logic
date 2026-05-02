@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkflowPFV — Verfahrensdashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f4f8;min-height:100vh;padding:2rem 1rem;}
+.wrap{max-width:900px;margin:0 auto;}
+.top-bar{background:#185FA5;color:#fff;border-radius:12px;padding:18px 24px;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.top-title{font-size:17px;font-weight:500;}
+.top-meta{font-size:12px;opacity:.8;font-family:'Courier New',monospace;}
+.top-badge{font-size:11px;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:6px;}
+
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem;}
+.stat{background:#fff;border-radius:10px;padding:16px 18px;border:0.5px solid #e0e7ef;}
+.stat-label{font-size:12px;color:#64748b;margin-bottom:4px;}
+.stat-val{font-size:24px;font-weight:500;color:#1e293b;}
+.stat-val.blue{color:#185FA5;}
+.stat-val.amber{color:#BA7517;}
+.stat-val.green{color:#3B6D11;}
+
+.section-label{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+
+.phases-track{display:flex;margin-bottom:1.5rem;border-radius:10px;overflow:hidden;border:0.5px solid #e0e7ef;}
+.phase-btn{flex:1;padding:11px 4px;font-size:11px;text-align:center;border:none;border-right:0.5px solid #e0e7ef;background:#fff;color:#94a3b8;cursor:pointer;transition:background .15s,color .15s;min-width:0;}
+.phase-btn:last-child{border-right:none;}
+.phase-btn.done{background:#E6F1FB;color:#185FA5;}
+.phase-btn.active{background:#185FA5;color:#fff;font-weight:500;}
+.phase-btn.locked{background:#f8fafc;color:#cbd5e1;cursor:not-allowed;}
+.phase-btn .check{display:block;font-size:9px;margin-top:2px;}
+
+.gates-box{margin-bottom:12px;}
+.gate-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;margin-bottom:6px;background:#f8fafc;border:0.5px solid #e0e7ef;}
+.gate-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.gate-dot.ok{background:#639922;}
+.gate-dot.warn{background:#BA7517;}
+.gate-txt{font-size:13px;color:#1e293b;flex:1;}
+.gate-badge{font-size:11px;padding:2px 8px;border-radius:6px;flex-shrink:0;}
+.gate-badge.ok{background:#EAF3DE;color:#3B6D11;}
+.gate-badge.warn{background:#FAEEDA;color:#BA7517;}
+
+.advance-btn{width:100%;padding:11px;font-size:14px;font-weight:500;background:#185FA5;color:#fff;border:none;border-radius:10px;cursor:pointer;transition:background .15s,opacity .15s;margin-bottom:1.5rem;}
+.advance-btn:hover:not(:disabled){background:#0C447C;}
+.advance-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;}.stat-row{grid-template-columns:1fr;}
+.phases-track{flex-wrap:wrap;} .phase-btn{min-width:80px;border-radius:0;} }
+
+.card{background:#fff;border:0.5px solid #e0e7ef;border-radius:12px;padding:16px 18px;}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.card-title{font-size:13px;font-weight:500;color:#1e293b;}
+.sim-btn{font-size:11px;padding:4px 10px;cursor:pointer;border-radius:6px;border:0.5px solid #e0e7ef;background:#f8fafc;color:#64748b;}
+.sim-btn:hover{background:#e0e7ef;}
+
+.frist-bar{margin-bottom:12px;}
+.frist-lrow{display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-bottom:5px;}
+.frist-track{height:7px;background:#f0f4f8;border-radius:4px;overflow:hidden;}
+.frist-fill{height:100%;border-radius:4px;transition:width .4s;}
+.frist-days{font-size:11px;color:#94a3b8;margin-top:4px;}
+
+.einw-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid #f0f4f8;}
+.einw-item:last-child{border-bottom:none;}
+.einw-id{font-size:10px;font-family:'Courier New',monospace;color:#185FA5;background:#E6F1FB;padding:2px 7px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.einw-body{flex:1;min-width:0;}
+.einw-meta{font-size:12px;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.einw-hash{font-size:10px;font-family:'Courier New',monospace;color:#94a3b8;}
+.einw-status{font-size:11px;padding:2px 8px;border-radius:6px;flex-shrink:0;}
+.einw-status.ok{background:#EAF3DE;color:#3B6D11;}
+.einw-status.warn{background:#FAEEDA;color:#BA7517;}
+
+.log-list{max-height:230px;overflow-y:auto;}
+.log-entry{display:flex;gap:10px;padding:6px 0;border-bottom:0.5px solid #f8fafc;align-items:flex-start;}
+.log-entry:last-child{border-bottom:none;}
+.log-ts{font-size:10px;font-family:'Courier New',monospace;color:#94a3b8;flex-shrink:0;padding-top:2px;}
+.log-msg{font-size:12px;color:#1e293b;flex:1;}
+.log-tag{font-size:10px;padding:1px 6px;border-radius:4px;margin-left:4px;display:inline-block;}
+.log-tag.sys{background:#f0f4f8;color:#64748b;}
+.log-tag.gate{background:#EAF3DE;color:#3B6D11;}
+.log-tag.warn{background:#FAEEDA;color:#BA7517;}
+
+.footer{text-align:center;font-size:11px;color:#94a3b8;margin-top:1rem;padding-top:1rem;border-top:0.5px solid #e0e7ef;}
+.footer a{color:#185FA5;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <div>
+      <div class="top-title">WorkflowPFV — Verfahrensdashboard</div>
+      <div class="top-meta">Dossier 0xA3F2…8C41 · Ethereum Sepolia Testnet</div>
+    </div>
+    <span class="top-badge">Prototyp / ETR-Artikel Demo</span>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-label">Aktive Phase</div><div class="stat-val blue" id="stat-phase">Vollständigkeit</div></div>
+    <div class="stat"><div class="stat-label">Einwendungen</div><div class="stat-val" id="stat-einw">3</div></div>
+    <div class="stat"><div class="stat-label">Frist läuft ab in</div><div class="stat-val amber" id="stat-frist">12 T</div></div>
+  </div>
+
+  <div class="section-label">Verfahrensphasen — Zustandsautomat</div>
+  <div class="phases-track" id="phases-track"></div>
+
+  <div class="gates-box" id="gate-checks"></div>
+  <button class="advance-btn" id="advance-btn">Phasenwechsel ausführen →</button>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Einwendungs-Zeitstempel</span>
+        <span style="font-size:11px;color:#64748b;" id="frist-countdown"></span>
+      </div>
+      <div id="frist-section"></div>
+      <div id="einw-list" style="margin-top:8px;"></div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Audit-Trail / Event-Log</span>
+        <button class="sim-btn" onclick="addManualEvent()">+ Simulieren</button>
+      </div>
+      <div class="log-list" id="log-list"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Prototyp zum Artikel <em>„Blockchain in der Planfeststellung"</em>, ETR Mai 2026 ·
+    Smart Contract <a href="https://sepolia.etherscan.io/" target="_blank">WorkflowPFV auf Sepolia</a> ·
+    <a href="https://github.com/bunjeblockchain/plan-approval-logic" target="_blank">github.com/bunjeblockchain/plan-approval-logic</a>
+  </div>
+</div>
+
+<script>
+const PHASES=[
+  {id:'Einreichung',label:'Einreichung',short:'Einr.'},
+  {id:'Vollstaendigkeit',label:'Vollständigkeit',short:'Vollst.'},
+  {id:'Auslegung',label:'Auslegung',short:'Ausleg.'},
+  {id:'Abwaegung',label:'Abwägung',short:'Abwäg.'},
+  {id:'BeschlussEntwurf',label:'Beschluss-Entwurf',short:'BE'},
+  {id:'Beschluss',label:'Beschluss',short:'Beschl.'},
+  {id:'Rechtskraft',label:'Rechtskraft',short:'RK'},
+];
+
+const GATES=[
+  [{ok:true,txt:'Pflichtunterlagen vollständig'},{ok:true,txt:'TÖB benannt und bestätigt'},{ok:true,txt:'Keine ausstehenden Fachprüfungen'}],
+  [{ok:true,txt:'Vollständigkeitsprüfung abgeschlossen'},{ok:true,txt:'Auslegungsfrist gesetzt'},{ok:false,txt:'Einwendungsfrist noch nicht abgelaufen'}],
+  [{ok:true,txt:'Einwendungsfrist abgelaufen'},{ok:false,txt:'2 Einwendungen noch offen'},{ok:true,txt:'Erörterungstermin protokolliert'}],
+  [{ok:true,txt:'Alle Einwendungen beschieden'},{ok:true,txt:'Abwägungsdokumentation vollständig'},{ok:true,txt:'Fachprüfungen freigegeben'}],
+  [{ok:true,txt:'Beschlussentwurf vorhanden'},{ok:true,txt:'Interne Freigabe Sachbereich 1'},{ok:true,txt:'Qualitätsprüfung bestanden'}],
+  [{ok:true,txt:'Beschluss zugestellt'},{ok:true,txt:'Bekanntmachung erfolgt'},{ok:true,txt:'Rechtsmittelfrist gesetzt'}],
+  [{ok:true,txt:'Keine Klage eingegangen'},{ok:true,txt:'Bestandskraft eingetreten'}],
+];
+
+const EINW=[
+  {id:'EW-001',txt:'Lärmschutz Anwohner Bereich A',hash:'0x3c2f…a1b9',ts:'2025-03-12 09:41',status:'ok',statusTxt:'Beschieden'},
+  {id:'EW-002',txt:'Flächeninanspruchnahme Parzelle 44',hash:'0x7d8e…c3f2',ts:'2025-03-14 14:22',status:'warn',statusTxt:'Offen'},
+  {id:'EW-003',txt:'Grundwassereinfluss Querung km 12,4',hash:'0xb19a…55dc',ts:'2025-03-15 11:05',status:'warn',statusTxt:'Offen'},
+];
+
+let currentPhase=1;
+let logEntries=[
+  {ts:'2025-03-08 08:00',msg:'Dossier initialisiert',tag:'sys'},
+  {ts:'2025-03-08 08:01',msg:'Phase Einreichung → Vollständigkeit',tag:'gate'},
+  {ts:'2025-03-10 10:17',msg:'Unterlagen-Manifest verankert',tag:'sys'},
+  {ts:'2025-03-12 09:41',msg:'Einwendung EW-001 Zeitstempel gesetzt',tag:'gate'},
+  {ts:'2025-03-14 14:22',msg:'Einwendung EW-002 Zeitstempel gesetzt',tag:'gate'},
+  {ts:'2025-03-15 11:05',msg:'Einwendung EW-003 Zeitstempel gesetzt',tag:'gate'},
+];
+
+const fristTotal=30,fristUsed=18;
+
+function renderPhases(){
+  const t=document.getElementById('phases-track');
+  t.innerHTML='';
+  PHASES.forEach((p,i)=>{
+    const btn=document.createElement('button');
+    btn.className='phase-btn'+(i<currentPhase?' done':i===currentPhase?' active':' locked');
+    btn.innerHTML=p.short+'<span class="check">'+(i<currentPhase?'✓':i===currentPhase?'●':'○')+'</span>';
+    btn.title=p.label;
+    if(i<currentPhase) btn.onclick=()=>{currentPhase=i;render();};
+    t.appendChild(btn);
+  });
+}
+
+function renderGates(){
+  const gates=GATES[currentPhase]||[];
+  const gc=document.getElementById('gate-checks');
+  gc.innerHTML='';
+  let allOk=true;
+  gates.forEach(g=>{
+    if(!g.ok) allOk=false;
+    const d=document.createElement('div');
+    d.className='gate-row';
+    d.innerHTML=`<div class="gate-dot ${g.ok?'ok':'warn'}"></div><span class="gate-txt">${g.txt}</span><span class="gate-badge ${g.ok?'ok':'warn'}">${g.ok?'erfüllt':'ausstehend'}</span>`;
+    gc.appendChild(d);
+  });
+  const btn=document.getElementById('advance-btn');
+  if(currentPhase>=PHASES.length-1){btn.textContent='Rechtskraft erreicht';btn.disabled=true;}
+  else{btn.disabled=!allOk;btn.textContent=allOk?`→ Weiter zu: ${PHASES[currentPhase+1].label}`:'Gates nicht erfüllt — Phasenwechsel gesperrt';}
+}
+
+function renderFrist(){
+  const pct=Math.round((fristUsed/fristTotal)*100);
+  const rem=fristTotal-fristUsed;
+  const col=pct>80?'#E24B4A':pct>60?'#BA7517':'#378ADD';
+  document.getElementById('frist-countdown').textContent=rem+' Tage verbleibend';
+  document.getElementById('stat-frist').textContent=rem+' T';
+  document.getElementById('frist-section').innerHTML=`
+    <div class="frist-bar">
+      <div class="frist-lrow"><span>Einwendungsfrist</span><span>${pct}%</span></div>
+      <div class="frist-track"><div class="frist-fill" style="width:${pct}%;background:${col};"></div></div>
+      <div class="frist-days">Tag ${fristUsed} von ${fristTotal} · Enddatum: 30.04.2025</div>
+    </div>`;
+}
+
+function renderEinw(){
+  const c=document.getElementById('einw-list');
+  c.innerHTML='';
+  EINW.forEach(e=>{
+    const d=document.createElement('div');
+    d.className='einw-item';
+    d.innerHTML=`<span class="einw-id">${e.id}</span><div class="einw-body"><div class="einw-meta">${e.txt}</div><div class="einw-hash">${e.hash} · ${e.ts}</div></div><span class="einw-status ${e.status}">${e.statusTxt}</span>`;
+    c.appendChild(d);
+  });
+  document.getElementById('stat-einw').textContent=EINW.length;
+}
+
+function renderLog(){
+  const c=document.getElementById('log-list');
+  c.innerHTML='';
+  [...logEntries].reverse().forEach(e=>{
+    const d=document.createElement('div');
+    d.className='log-entry';
+    d.innerHTML=`<span class="log-ts">${e.ts}</span><span class="log-msg">${e.msg}<span class="log-tag ${e.tag||''}">${e.tag}</span></span>`;
+    c.appendChild(d);
+  });
+}
+
+function render(){
+  renderPhases();renderGates();renderFrist();renderEinw();renderLog();
+  document.getElementById('stat-phase').textContent=PHASES[currentPhase].label;
+}
+
+document.getElementById('advance-btn').addEventListener('click',()=>{
+  if(currentPhase<PHASES.length-1){
+    const from=PHASES[currentPhase].label;
+    currentPhase++;
+    const to=PHASES[currentPhase].label;
+    const now=new Date().toISOString().slice(0,16).replace('T',' ');
+    logEntries.push({ts:now,msg:`Phase ${from} → ${to}`,tag:'gate'});
+    logEntries.push({ts:now,msg:`Event Advanced(dossier, ${PHASES[currentPhase].id}) emittiert`,tag:'sys'});
+    render();
+  }
+});
+
+let simCount=0;
+function addManualEvent(){
+  simCount++;
+  const now=new Date().toISOString().slice(0,16).replace('T',' ');
+  const msgs=['Hash-Manifest aktualisiert','TÖB-Stellungnahme verankert','Fachprüfung Lärmschutz bestätigt','Wasserrechtliche Erlaubnis geprüft','Dokument v'+simCount+'.0 registriert'];
+  logEntries.push({ts:now,msg:msgs[simCount%msgs.length],tag:'sys'});
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
