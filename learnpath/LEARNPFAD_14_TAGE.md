@@ -21,6 +21,8 @@ Contract direkt in Remix laden:
 - Klick: `pause()` / `unpause()`; `paused()` lesen (blau).
 - Mini‑Edit: `isPaused() external view returns (bool)`.
 - Output: 1 Screenshot (Event‑Log) + 1 Satz.
+  
+→ [Tag01_Grundlagen.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_Grundlagen.sol)
 
 ## Tag 2 – `require` & Fehlermeldungen
 - Provoziere 3 Fehler: nicht berechtigt / pausiert / ungültige id.
