@@ -4,7 +4,7 @@
 **Ritual je Tag:** 5‑Min‑Timer → zur `//TODO` springen → kompilieren → **ersten Fehler** fixen → 1 Klick‑Test → 1 Screenshot → 1 Satz.
 
 ---
-**Tool:** Alle Übungen laufen im Browser — kein lokales Setup nötig.  
+**Tool:** Alle Übungen laufen im Browser, kein lokales Setup nötig.  
 → [Remix IDE öffnen](https://remix.ethereum.org)
 
 **Contract laden:**  
