@@ -17,6 +17,7 @@ Der Contract ist auf dem Ethereum Sepolia Testnet deployed und verifiziert. Lese
 | **Etherscan** | [sepolia.etherscan.io/address/0x2aa68e…3f25e](https://sepolia.etherscan.io/address/0x2aa68e465455e2da532dc4c8a64ceee52703f25e#code) |
 | **Verifizierung** | ✅ Source Code Verified (Exact Match) |
 
+→ [Interaktives Verfahrensdashboard](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)
 ---
 
 ## 🎯 Anwendungsfall
