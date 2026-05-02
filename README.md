@@ -20,7 +20,7 @@ Der Contract ist auf dem Ethereum Sepolia Testnet deployed und verifiziert. Lese
 
 → [Interaktives Verfahrensdashboard](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)
 
-> ⚠️ **Hinweis:** Das Dashboard ist ein statischer Prototyp zur Veranschaulichung —
+> ⚠️ **Hinweis:** Das Dashboard ist ein statischer Prototyp zur Veranschaulichung
 > keine Live-Verbindung zum Smart Contract.
 > Es zeigt, wie ein Frontend für Verfahrensbeteiligte aussehen könnte.
 
