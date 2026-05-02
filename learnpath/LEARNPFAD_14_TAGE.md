@@ -1,21 +1,19 @@
-# 14‑Tage‑Lernpfad (Solidity, bunje_blockchain)
+## Vor dem Start
 
-**Prinzip:** 40 % erklären/lesen, 30 % klicken/testen, 30 % *Mini‑Edits* (1–10 Zeilen).  
-**Ritual je Tag:** 5‑Min‑Timer → zur `//TODO` springen → kompilieren → **ersten Fehler** fixen → 1 Klick‑Test → 1 Screenshot → 1 Satz.
+→ [WorkflowPFV Verfahrensdashboard ansehen](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)
+Zeigt Zustandsautomat, Gate-Status und Audit-Trail — so sieht das Ergebnis aus.
 
----
-**Tool:** Alle Übungen laufen im Browser, kein lokales Setup nötig.  
+**Tool für alle Übungen:** Kein lokales Setup nötig.
 → [Remix IDE öffnen](https://remix.ethereum.org)
 
-**Contract laden:**  
-1. In Remix: „Load from GitHub" wählen  
-2. URL eingeben: `https://github.com/buenje/plan-approval-logic`  
-3. Datei öffnen: `WorkflowPFV.t.sol` (Haupt-Contract im Root)  
-4. Compiler: Solidity 0.8.x · EVM: London oder höher  
-5. Deployen auf: JavaScript VM (für lokale Tests)
+Contract direkt in Remix laden:
+1. „Load from GitHub" wählen
+2. Repository: `buenje/plan-approval-logic`
+3. Datei: `WorkflowPFV.t.sol` im Root-Verzeichnis
+4. Compiler: Solidity 0.8.x
+5. Deployen auf: JavaScript VM
 
-_(Blauer Button in Remix = lesen/view, kein Chain-Eintrag.  
-Oranger Button = schreiben/transact, erzeugt eine Transaktion.)_
+---
 
 **Demo ansehen:** Vor dem ersten Tag —  
 → [WorkflowPFV Verfahrensdashboard](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)  
