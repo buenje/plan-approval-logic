@@ -17,6 +17,10 @@
 _(Blauer Button in Remix = lesen/view, kein Chain-Eintrag.  
 Oranger Button = schreiben/transact, erzeugt eine Transaktion.)_
 
+**Demo ansehen:** Vor dem ersten Tag —  
+→ [WorkflowPFV Verfahrensdashboard](https://buenje.github.io/plan-approval-logic/demo/WorkflowPFV_Demo.html)  
+Zeigt Zustandsautomat, Gate-Status und Audit-Trail.
+
 ## Tag 1 – Setup & Pause‑Schalter
 - Klick: `pause()` / `unpause()`; `paused()` lesen (blau).
 - Mini‑Edit: `isPaused() external view returns (bool)`.
