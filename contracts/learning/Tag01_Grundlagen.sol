@@ -1,4 +1,4 @@
-[Dateiin// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
 /// @title Lernpfad Tag 1–6 — Grundlagen
@@ -158,4 +158,4 @@ contract Tag05_DonatePause {
     // TODO Tag 6: Füge einen dritten modifier hinzu:
     // modifier onlyWhenLocked() { require(_paused, "nicht pausiert"); _; }
     // Wofür könnte das nützlich sein?
-}halt hier einfügen]
+}
