@@ -1,5 +1,5 @@
 # Cheatsheet — Bash & Git
-> Für den täglichen Einsatz im Terminal. Keine Vollständigkeit nur was man wirklich braucht.
+> Für den täglichen Einsatz im Terminal. Keine Vollständigkeit nur was man wirklich braucht.(AI basiert)
 
 ---
 
