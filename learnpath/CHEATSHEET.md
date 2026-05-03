@@ -1,5 +1,5 @@
 # Cheatsheet — Bash & Git
-> Für den täglichen Einsatz im Terminal. Keine Vollständigkeit — nur was du wirklich brauchst.
+> Für den täglichen Einsatz im Terminal. Keine Vollständigkeit nur was man wirklich braucht.
 
 ---
 
@@ -41,7 +41,7 @@ cat dateiname              # Inhalt einer Datei anzeigen
 
 ---
 
-## Git — die 10 Befehle die du täglich brauchst
+## Git — die 10 Befehle die man täglich braucht
 
 ```bash
 git status                 # Was hat sich geändert?
@@ -124,7 +124,7 @@ mkdir -p zielordner && cp quelldatei zielordner/
 
 ---
 
-## Wo lernst du mehr?
+## Wo lerne ich mehr?
 
 - `man git` — vollständige Git-Dokumentation im Terminal
 - `git --help` — Kurzübersicht
