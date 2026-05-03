@@ -4,8 +4,10 @@
 Zeigt Zustandsautomat, Gate-Status und Audit-Trail — so sieht das Ergebnis aus.
 
 **Tool für alle Übungen:** Kein lokales Setup nötig.  
-→ [Remix IDE öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/WorkflowPFV_v1_deployed.sol)  
+→ [Tag01_Grundlagen.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_Grundlagen.sol)  
 Contract wird direkt geladen — kein manuelles Suchen nötig.
+
+---
 
 ---
 Contract direkt in Remix laden:
