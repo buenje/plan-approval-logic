@@ -5,6 +5,8 @@
 
 → [Tag07_Struktur.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag07_Struktur.sol)
 
+→ [Tag14_Vollstaendig.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag14_Vollstaendig.sol)
+
 Contract wird direkt geladen — kein manuelles Suchen nötig.
 
 ---
@@ -89,6 +91,7 @@ Contract direkt in Remix laden:
 - Output: Foto/Screenshot der Liste.
 
 ## Tag 14 – Demo‑Paket
+→ [Tag14_Vollstaendig.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag14_Vollstaendig.sol)
 - README „5‑Min‑Demo“ final, 2 Screenshots (Log & State) in `/docs`.
 - Output: Commit „feat: demo‑paket“ + kurzer Self‑Check (3 Fragen).
   - Warum steht `require(!paused)` im Modifier **und** gibt es `pause()`?  
