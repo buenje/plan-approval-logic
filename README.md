@@ -37,7 +37,7 @@ Die juristische Abwägung und die hoheitliche Entscheidung bleiben bei der zust�
 
 Sie kommen aus Ingenieurwesen, Recht oder Verwaltung und möchten
 verstehen, wie man einen Smart Contract liest und anpasst?
-Hier ein Versuch die Logik, anhand eines persönlichen Lernplans zu verdeutlichen
+Hier ein Versuch die Logik, anhand eines persönlichen Lernplans zu verdeutlichen.
 
 → [14-Tage-Lernpfad (Solidity)](./learnpath/LEARNPFAD_14_TAGE.md)
 
