@@ -52,6 +52,8 @@ Contract direkt in Remix laden:
 - Ordner/Imports prüfen, Auto‑Save, Outline, **F2 Rename** üben.
 - Mini‑Edit: Dateikopf‑Kommentare (`@title`, `@notice`).
 - Output: Commit „chore: structure & docs“.
+  
+- → [Tag07_Struktur.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag07_Struktur.sol)
 
 ## Tag 8 – Klon‑Übung (ohne Neuschreiben)
 - Datei duplizieren; Benennungen ändern (`Bestaetigt → Freigegeben`), Logik gleich.
