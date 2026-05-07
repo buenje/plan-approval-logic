@@ -1,6 +1,7 @@
 
 **Tool für alle Übungen:** Kein lokales Setup nötig.  
-→ [Tag01_Grundlagen.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_Grundlagen.sol)  
+→ [Tag01_Grundlagen.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_Grundlagen.sol) 
+→ [Tag07_Struktur.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag07_Struktur.sol)
 Contract wird direkt geladen — kein manuelles Suchen nötig.
 
 ---
@@ -16,11 +17,12 @@ Contract direkt in Remix laden:
 ---
 
 ## Tag 1 – Setup & Pause‑Schalter
+→ [Tag01_Grundlagen.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_Grundlagen.sol)
 - Klick: `pause()` / `unpause()`; `paused()` lesen (blau).
 - Mini‑Edit: `isPaused() external view returns (bool)`.
 - Output: 1 Screenshot (Event‑Log) + 1 Satz.
   
-→ [Tag01_Grundlagen.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_Grundlagen.sol)
+
 
 ## Tag 2 – `require` & Fehlermeldungen
 - Provoziere 3 Fehler: nicht berechtigt / pausiert / ungültige id.
@@ -49,11 +51,10 @@ Contract direkt in Remix laden:
 - Output: 2 Sätze: globaler Schalter ≠ fachlicher Status.
 
 ## Tag 7 – Struktur & VS‑Code‑Flow
+→ [Tag07_Struktur.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag07_Struktur.sol)
 - Ordner/Imports prüfen, Auto‑Save, Outline, **F2 Rename** üben.
 - Mini‑Edit: Dateikopf‑Kommentare (`@title`, `@notice`).
 - Output: Commit „chore: structure & docs“.
-  
-- → [Tag07_Struktur.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag07_Struktur.sol)
 
 ## Tag 8 – Klon‑Übung (ohne Neuschreiben)
 - Datei duplizieren; Benennungen ändern (`Bestaetigt → Freigegeben`), Logik gleich.
