@@ -22,13 +22,10 @@ Contract direkt in Remix laden:
 ---
 
 ## Tag 1 – Setup & Pause‑Schalter
-→ [Tag01_Grundlagen.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowBasics.sol)
 - Klick: `pause()` / `unpause()`; `paused()` lesen (blau).
 - Mini‑Edit: `isPaused() external view returns (bool)`.
 - Output: 1 Screenshot (Event‑Log) + 1 Satz.
   
-
-
 ## Tag 2 – `require` & Fehlermeldungen
 - Provoziere 3 Fehler: nicht berechtigt / pausiert / ungültige id.
 - Mini‑Edit: Meldungen vereinheitlichen („nicht berechtigt“, „pausiert“, „ungueltige id“).
@@ -56,7 +53,6 @@ Contract direkt in Remix laden:
 - Output: 2 Sätze: globaler Schalter ≠ fachlicher Status.
 
 ## Tag 7 – Struktur & VS‑Code‑Flow
-→ [Tag07_Struktur.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/StateTransitionExample.sol)
 - Ordner/Imports prüfen, Auto‑Save, Outline, **F2 Rename** üben.
 - Mini‑Edit: Dateikopf‑Kommentare (`@title`, `@notice`).
 - Output: Commit „chore: structure & docs“.
@@ -91,7 +87,6 @@ Contract direkt in Remix laden:
 - Output: Foto/Screenshot der Liste.
 
 ## Tag 14 – Demo‑Paket
-→ [Tag14_Vollstaendig.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowPrototyp.sol)
 - README „5‑Min‑Demo“ final, 2 Screenshots (Log & State) in `/docs`.
 - Output: Commit „feat: demo‑paket“ + kurzer Self‑Check (3 Fragen).
   - Warum steht `require(!paused)` im Modifier **und** gibt es `pause()`?  
