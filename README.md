@@ -39,7 +39,7 @@ Sie kommen aus Ingenieurwesen, Recht oder Verwaltung und möchten
 verstehen, wie man einen Smart Contract liest und anpasst?
 Hier ein Versuch die Logik, anhand eines persönlichen Lernplans zu verdeutlichen.
 
-→ [Workflow Exploration Guide (Solidity)](./learnpath/Workflow_Exploration.md)
+→ [Workflow Exploration Guide (Solidity)](./learnpath/WORKFLOW_EXPLORATION.md)
 
 Strukturiert für Menschen, die in Prozessen denken, nicht in Syntax.
 40 % lesen · 30 % klicken · 30 % kleine Edits (1–10 Zeilen).
