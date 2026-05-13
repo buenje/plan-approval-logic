@@ -144,7 +144,7 @@ contract Tag05_DonatePause {
 
     function sweep() external onlyOwner {
         (bool ok,) = owner.call{value: address(this).balance}("");
-        require(ok, "Überweisung fehlgeschlagen");
+        require(ok, "Transfer fehlgeschlagen");
     }
 
     receive() external payable {}
