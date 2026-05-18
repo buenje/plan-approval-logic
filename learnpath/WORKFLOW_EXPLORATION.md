@@ -1,11 +1,13 @@
 
 **Tool für alle Übungen:** Kein lokales Setup nötig.  
 
-→ [Tag01_WorkflowBasics.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowBasics.sol) 
+→ [## Direkt in Remix öffnen
 
-→ [Tag07_StateTransitionExample.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/StateTransitionExample.sol)
+→ [Tag01_WorkflowBasics.sol direkt in Remix öffnen](https://remix.ethereum.org/?#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag01_WorkflowBasics.sol)
 
-→ [Tag14_WorkflowPrototype.sol in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowPrototyp.sol)
+→ [Tag07_StateTransitionExample.sol direkt in Remix öffnen](https://remix.ethereum.org/?#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/StateTransitionExample.sol)
+
+→ [Tag14_WorkflowPrototype.sol direkt in Remix öffnen](https://remix.ethereum.org/?#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/Tag14_WorkflowPrototype.sol)
 
 Contract wird direkt geladen — kein manuelles Suchen nötig.
 
