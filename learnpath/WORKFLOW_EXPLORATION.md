@@ -1,7 +1,7 @@
 
 **Tool für alle Übungen:** Kein lokales Setup nötig.  
 
-→ 
+→ https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowBasics.sol
 
 → [Tag07_StateTransitionExample.sol direkt in Remix öffnen](https://remix.ethereum.org/?#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/StateTransitionExample.sol)
 
