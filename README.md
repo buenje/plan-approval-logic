@@ -47,7 +47,7 @@ Each gate checks defined conditions before the procedure can advance:
 | Gate | Transition | Prerequisites |
 |---|---|---|
 | Gate 1 | Submission → Completeness | All required documents present, Merkle root set, applicant signature |
-| Gate 2 | Completeness → Public Display | Completeness confirmed, display period set, objection portal open |
+| Gate 2 | Completeness → Public Display  | Completeness confirmed, display period set, objection portal open |
 | Gate 3 | Display → Hearing | Display period expired, objections recorded with timestamps |
 | Gate 4 | Hearing → Draft Decision | All objections addressed, hearing documented, no open reviews |
 | Gate 5 | Draft → Final Decision | Internal approvals granted, decision hash anchored |
