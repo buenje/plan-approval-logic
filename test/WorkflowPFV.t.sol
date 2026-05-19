@@ -2,7 +2,7 @@
 pragma solidity ^0.8.24;
 
 import "forge-std/Test.sol";
-import "../contracts/WorkflowPFV_v1_deployed.sol";
+import "../src/WorkflowPFV.sol";
 
 /**
  * @title WorkflowPFVTest
