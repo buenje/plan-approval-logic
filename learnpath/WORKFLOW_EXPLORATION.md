@@ -5,7 +5,7 @@
 
 → [StateTransitionExample.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/StateTransitionExample.sol)
 
-→ → [WorkflowPrototype.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowPrototype.sol)
+→ [WorkflowPrototype.sol direkt in Remix öffnen](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/buenje/plan-approval-logic/main/contracts/learning/WorkflowPrototype.sol)
 
 Contract wird direkt geladen — kein manuelles Suchen nötig.
 
