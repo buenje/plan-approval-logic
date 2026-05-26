@@ -1,6 +1,6 @@
 # Plan Approval Logic — Smart Contract for Railway Planning Procedures
 
-> Technical demonstrator accompanying the journal article **"Blockchain in der Planfeststellung: Möglichkeiten für Effizienz und Nachvollziehbarkeit"**, published in *Eisenbahntechnische Rundschau (ETR)*, Issue 5/2026.
+> Technical demonstrator accompanying the journal article **"Blockchain in der Planfeststellung: Möglichkeiten für Effizienz und Nachvollziehbarkeit"**, published in *Eisenbahntechnische Rundschau (ETR)*, May 5/2026.
 
 This repository contains a Solidity smart contract that models the procedural logic of a German railway planning approval procedure (*Planfeststellungsverfahren*) under § 18 AEG in conjunction with §§ 72 ff. VwVfG as a finite state machine. The project is a **research and demonstration proof-of-concept — not intended for production use**.
 
