@@ -1,4 +1,4 @@
-# Plan Approval Logic — Smart Contract for Railway Planning Procedures
+# Plan Approval Logic | Smart Contract for Railway Planning Procedures
 
 > Technical demonstrator accompanying the journal article **"Blockchain in der Planfeststellung: Möglichkeiten für Effizienz und Nachvollziehbarkeit"**, published in *Eisenbahntechnische Rundschau (ETR)*, Issue 5/2026.
 
