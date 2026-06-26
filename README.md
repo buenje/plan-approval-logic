@@ -21,6 +21,7 @@ The contract is deployed and verified on the Ethereum Sepolia testnet. Readers c
 
 > **Note:** The dashboard is a static prototype for illustration purposes — it has no live connection to the smart contract. It shows what a frontend for procedure participants could look like.
 
+This demonstration runs on the Ethereum Sepolia testnet as a proof-of-concept. The underlying process logic is infrastructure-agnostic — permissioned ledgers or other cryptographic backends are equally applicable depending on compliance requirements.
 ---
 
 ## What This Is
